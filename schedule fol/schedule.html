@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Information System - Create Schedule</title>
+  <link rel="stylesheet" href="/Dashboard fol/dashboard design.css?v=202610120227">
+  <link rel="stylesheet" href="/schedule fol/schedule design.css?v=202609262025">
+</head>
+<body>
+
+  <div class="app-container">
+
+    <!-- TIER 1: DARK TOP BRANDING BAR -->
+    <header class="top-header-brand">
+      <div class="brand-box">
+        <img src="/Profile%20pic_part/Arellano_University_New_Logo.png?v=202609280110" alt="Arellano Logo" class="brand-logo">
+        <span class="brand-name">Arellano University</span>
+      </div>
+
+      <div class="profile-box" onclick="navigateToProfile()" title="View Profile" style="cursor: pointer;">
+        <span class="user-name">KRISHA A. PADRIGON</span>
+        <div class="user-avatar"></div>
+      </div>
+    </header>
+
+    <!-- TIER 2: BLUE HORIZONTAL NAV BAR -->
+    <nav class="top-header-nav">
+      <div class="nav-links">
+        <a href="/Dashboard fol/Dashboard section.html?v=202610102334" class="nav-item">
+          <i class="fa-solid fa-border-all"></i> Dashboard
+        </a>
+        <a href="/View students fol/View students.html?v=202610102332" class="nav-item">
+          <i class="fa-solid fa-users"></i> View Students
+        </a>
+        <a href="/Add students fol/Add students.html?v=202610102334" class="nav-item">
+          <i class="fa-solid fa-user-plus"></i> Add Student
+        </a>
+        <a href="/schedule fol/schedule.html?v=202610102332" class="nav-item active">
+          <i class="fa-solid fa-calendar-plus"></i> Create Schedule
+        </a>
+        <a href="/View schedule/View schedule.html?v=202610102332" class="nav-item">
+          <i class="fa-solid fa-bullhorn"></i> View Schedule
+        </a>
+      
+        <a href="/Dashboard fol/create_account.html?v=202610102334" class="nav-item">
+          <i class="fa-solid fa-user-plus"></i> Create Account
+        </a>
+        <a href="/Dashboard fol/manage_users.html?v=202610102334" class="nav-item">
+          <i class="fa-solid fa-user-gear"></i> Manage Users
+        </a>
+        <a href="/Dashboard fol/manage_professors.html?v=202610102334" class="nav-item">
+          <i class="fa-solid fa-user-tie"></i> Manage Professors
+        </a>
+        <a href="/About fol/about.html?v=202610102334" class="nav-item">
+          <i class="fa-solid fa-circle-info"></i> About
+        </a>
+      </div>
+    </nav>
+
+    <!-- MAIN WORKSPACE AREA -->
+    <main class="main-body">
+      <div class="dashboard-content">
+
+        <!-- PAGE TITLE HEADER -->
+        <section class="page-title-section">
+          <div class="title-text">
+            <span class="category-label">SCHEDULE MANAGEMENT</span>
+            <h1 class="page-heading">Create Class Schedule</h1>
+          </div>
+        </section>
+
+        <!-- FORM CARD CONTAINER -->
+        <div class="form-card">
+          <div class="form-card-header">
+            <div>
+              <h2>Class Schedule Details</h2>
+              <p>Add a BSIT teaching schedule to organize classes and student assignments.</p>
+            </div>
+          </div>
+
+          <div id="scheduleErrorMessage" class="error-banner" style="display: none;"></div>
+
+          <form id="createScheduleForm" onsubmit="saveSchedule(event)">
+            
+            <!-- Row 1: Subject. The program is fixed to BSIT. -->
+            <div class="form-row">
+              <div class="form-group form-group-wide">
+                <label for="subjectCode">Subject Code / Title</label>
+                <input type="text" id="subjectCode" placeholder="e.g. ITC 111 - Computer Programming" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group form-group-wide">
+                <label for="teacherName">Professor</label>
+                <select id="teacherName" required disabled>
+                  <option value="">Loading professors...</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="roomNumber">Room / Lab</label>
+                <input type="text" id="roomNumber" placeholder="e.g. Lab 302" required>
+              </div>
+
+              <div class="form-group">
+                <label for="classDay">Day</label>
+                <select id="classDay" required>
+                  <option value="" disabled selected>Select Day</option>
+                  <option value="Monday">Monday</option>
+                  <option value="Tuesday">Tuesday</option>
+                  <option value="Wednesday">Wednesday</option>
+                  <option value="Thursday">Thursday</option>
+                  <option value="Friday">Friday</option>
+                  <option value="Saturday">Saturday</option>
+                  <option value="Sunday">Sunday</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Row 4: Start Time & End Time -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="startTime">Start Time</label>
+                <div class="time-input-group">
+                  <input type="text" id="startTime" inputmode="numeric" pattern="([1-9]|1[0-2]):[0-5][0-9]" maxlength="5" placeholder="e.g. 8:00" required>
+                  <select id="startPeriod" aria-label="Start time AM or PM">
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="endTime">End Time</label>
+                <div class="time-input-group">
+                  <input type="text" id="endTime" inputmode="numeric" pattern="([1-9]|1[0-2]):[0-5][0-9]" maxlength="5" placeholder="e.g. 11:00" required>
+                  <select id="endPeriod" aria-label="End time AM or PM">
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="form-actions">
+              <button type="reset" class="btn-clear">Clear</button>
+              <button type="submit" class="btn-submit">Save Schedule</button>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </main>
+  </div>
+    <script src="/auth-client.js?v=202610012123"></script>
+  <script src="/socket.io/socket.io.min.js"></script>
+  <script src="schedule func.js?v=202609280105"></script>
+  <script src="/Profile pic_part/Profile.js?v=202609261659"></script>
+</body>
+</html>

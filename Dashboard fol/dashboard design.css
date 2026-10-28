@@ -1,0 +1,519 @@
+/* =====================================================================
+   1. RESET & BASE STYLES
+   ===================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f4f6f9;
+  color: #333;
+  min-height: 100vh;
+  /* Follows the real viewport on iPhone, where the toolbar resizes. */
+  min-height: 100dvh;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* Follows the real viewport on iPhone, where the toolbar resizes. */
+  min-height: 100dvh;
+}
+
+/* =====================================================================
+   2. TOP BRANDING BAR (TIER 1)
+   ===================================================================== */
+.top-header-brand {
+  background-color: #0b192c;
+  padding: 10px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+
+.brand-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-logo {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.brand-name {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.profile-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+
+.user-name {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.user-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1e293b;
+  flex-shrink: 0;
+}
+
+.user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =====================================================================
+   3. NAVIGATION BAR & TABS (TIER 2)
+   ===================================================================== */
+.top-header-nav {
+  background-color: #1e50e2;
+  padding: 0 32px;
+  display: flex;
+  align-items: flex-end;
+  height: 54px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 6px;
+  align-items: flex-end;
+  height: 100%;
+  min-width: max-content;
+}
+
+.nav-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  font-size: 16px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px 8px 0 0;
+  height: 42px;
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.nav-item.active {
+  background-color: #f4f6f9;
+  color: #1e50e2;
+  font-weight: 700;
+  height: 46px;
+  border-radius: 8px 8px 0 0;
+}
+
+.nav-item.active i {
+  color: #1e50e2;
+}
+
+/* =====================================================================
+   4. MAIN LAYOUT & HEADER
+   ===================================================================== */
+.main-body {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.dashboard-content {
+  width: 90%;
+  max-width: 1200px;
+  margin: 28px auto;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.welcome-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.category-label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: #1e50e2;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.welcome-heading {
+  font-size: 38px;
+  font-weight: 800;
+  color: #0b192c;
+}
+
+.pending-badge,
+.badge {
+  background-color: #e0e7ff;
+  color: #1e50e2;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 4px;
+}
+
+.pending-badge {
+  background: #ffedd5;
+  color: #c2410c;
+}
+
+/* =====================================================================
+   5. STAT CARDS GRID (4 COLUMNS)
+   ===================================================================== */
+.stats-box {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.stat-card {
+  background-color: #ffffff;
+  border-radius: 6px;
+  padding: 26px 28px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.stat-info h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: #64748b;
+  letter-spacing: 0.6px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.stat-number {
+  font-size: 64px;
+  font-weight: 800;
+  color: #0b192c;
+  line-height: 1;
+}
+
+/* Explicitly Hide Unwanted Card & Section Header Icons */
+.stat-card .stat-icon,
+.courses-section .header-icon,
+.pending-title .pending-icon {
+  display: none;
+}
+
+/* Typography Highlights */
+.highlight-orange { color: #ea580c; }
+.highlight-purple { color: #8b5cf6; }
+
+/* =====================================================================
+   6. ENROLLED COURSES & PENDING QUEUE CARDS
+   ===================================================================== */
+.bottom-box {
+  width: 100%;
+}
+
+.courses-section,
+.pending-queue-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.section-header,
+.pending-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.section-header h2,
+.pending-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #0b192c;
+  margin: 0;
+}
+
+.section-sub {
+  font-size: 13px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+/* Course Distribution Items */
+.course-stat-card,
+.enrolled-course-container {
+  border-radius: 4px;
+}
+
+.course-card-item {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Progress Indicators */
+.progress-bar {
+  width: 140px;
+  height: 6px;
+  background-color: #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #1e50e2;
+  border-radius: 10px;
+}
+
+/* =====================================================================
+   7. PENDING APPROVALS TABLE
+   ===================================================================== */
+.pending-scroll-container {
+  max-height: 280px;
+  overflow-y: auto;
+  border-radius: 6px;
+  border: 1px solid #f1f5f9;
+}
+
+.pending-scroll-container::-webkit-scrollbar { width: 6px; }
+.pending-scroll-container::-webkit-scrollbar-track { background: #f8fafc; }
+.pending-scroll-container::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+
+.pending-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.pending-table thead tr {
+  border-bottom: 2px solid #f1f5f9;
+  color: #64748b;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.pending-table thead th {
+  padding: 12px 16px;
+  position: sticky;
+  top: 0;
+  background-color: #ffffff;
+  z-index: 10;
+  font-weight: 700;
+}
+
+.pending-table tbody td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 14px;
+  color: #334155;
+}
+
+.pending-table button {
+  border-radius: 4px;
+}
+
+.btn-primary,
+.btn-secondary,
+.btn-submit,
+.btn-clear,
+.delete-btn {
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary { background: #2563eb; color: #ffffff; border: none; padding: 8px 16px; }
+.btn-secondary { background: #e2e8f0; color: #334155; border: none; padding: 8px 16px; }
+
+.btn-submit:active,
+.btn-clear:active,
+.delete-btn:active,
+.btn-primary:active,
+.btn-secondary:active {
+  transform: translate3d(0, 0, 0) scale(0.97) !important;
+  box-shadow: none;
+}
+
+/* =====================================================================
+   9. CUSTOM MODAL & TOAST NOTIFICATIONS
+   ===================================================================== */
+.custom-modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(15, 23, 42, 0.6);
+  /* iOS Safari only honours the prefixed version. */
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+.modal-card {
+  position: relative;
+  background: #ffffff;
+  width: 90%; max-width: 420px;
+  border-radius: 6px;
+  padding: 24px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  z-index: 10;
+}
+
+.modal-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.modal-header i { font-size: 1.4rem; color: #f59e0b; }
+.modal-header h3 { margin: 0; font-size: 1.15rem; color: #1e293b; font-weight: 600; }
+.modal-body p { margin: 0; color: #64748b; font-size: 0.95rem; line-height: 1.5; }
+.modal-footer { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
+
+/* Toasts */
+.toast-container { position: fixed; top: 20px; right: 20px; z-index: 10000; display: flex; flex-direction: column; gap: 10px; }
+.toast { background: #1e293b; color: #fff; padding: 12px 18px; border-radius: 6px; font-size: 0.9rem; box-shadow: 0 4px 12px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 10px; }
+/* The colour goes all the way round rather than down one edge, so a success
+   message still reads differently from an error without a stripe on the side. */
+.toast.success { border: 2px solid #22c55e; }
+.toast.error { border: 2px solid #ef4444; }
+
+/* =====================================================================
+   10. MOTION
+   ---------------------------------------------------------------------
+   There is no animation on this page. Every panel is drawn where it
+   belongs and stays there until the data changes.
+
+   What was removed, and why it was not needed:
+     - cards lifting 3px and casting a bigger shadow on hover. It looked
+       like a box appearing over the card, and it said nothing the panel
+       was not already saying.
+     - the page, the panels and the modals fading or sliding into place.
+       The result was identical a moment later, so it only delayed reading.
+     - the progress bar creeping across to its new width. The number it
+       represents was already printed beside it.
+   ===================================================================== */
+
+/* =====================================================================
+   11. MEDIA QUERIES (RESPONSIVE)
+   ===================================================================== */
+@media (max-width: 1024px) {
+  .stats-box {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .stats-box {
+    grid-template-columns: 1fr;
+  }
+  
+  .dashboard-content {
+    width: 95%;
+  }
+}
+
+/* Keep the tab strip usable on phones: tighter items and a visible
+   scrollbar so it is obvious there is more navigation off-screen. */
+@media (max-width: 768px) {
+  .top-header-nav {
+    padding: 0 12px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-color: rgba(255, 255, 255, 0.55) rgba(255, 255, 255, 0.15);
+  }
+
+  .top-header-nav::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .top-header-nav::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .top-header-nav::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.55);
+  }
+
+  .nav-item {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+}
+
+/* =============================================================
+   BACKEND NOT REACHABLE
+   Shown when the API cannot be reached, so a stopped server reads
+   as a stopped server instead of a page that never finishes loading.
+   ============================================================= */
+.sis-backend-down {
+    position: fixed;
+    left: 50%;
+    bottom: 22px;
+    transform: translateX(-50%);
+    z-index: 99999;
+    max-width: min(560px, calc(100vw - 32px));
+    padding: 14px 18px;
+    border: 1px solid #b91c1c;
+    border-radius: 10px;
+    background: #fef2f2;
+    color: #991b1b;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, .28);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.45;
+    text-align: center;
+}

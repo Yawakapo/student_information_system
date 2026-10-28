@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Student Information System</title>
+    <!-- Font Awesome Icons -->
+    <!-- Links to CSS stylesheets -->
+    <link rel="stylesheet" href="/Dashboard fol/dashboard design.css?v=202610120227">
+    <link rel="stylesheet" href="/About fol/about_design.css?v=202609261743">
+</head>
+<body>
+
+    <div class="app-container">
+
+        <!-- TIER 1: DARK TOP BRANDING BAR -->
+        <header class="top-header-brand">
+            <div class="brand-box">
+                <img src="/Profile%20pic_part/Arellano_University_New_Logo.png?v=202609280110" alt="Arellano Logo" class="brand-logo">
+                <span class="brand-name">Arellano University</span>
+            </div>
+
+            <div class="profile-box" onclick="navigateToProfile()" title="View Profile">
+                <span class="user-name">KRISHA A. PADRIGON</span>
+                <div class="user-avatar"></div>
+            </div>
+        </header>
+
+        <!-- TIER 2: BLUE HORIZONTAL NAV BAR -->
+        <nav class="top-header-nav">
+            <div class="nav-links">
+                <a href="/Dashboard fol/Dashboard section.html?v=202610102332" class="nav-item admin-only-nav">
+                    <i class="fa-solid fa-border-all"></i> Dashboard
+                </a>
+                <a href="/View students fol/View students.html?v=202610102332" class="nav-item admin-only-nav">
+                    <i class="fa-solid fa-users"></i> View Students
+                </a>
+                <a href="/Add students fol/Add students.html?v=202610102332" class="nav-item admin-only-nav">
+                    <i class="fa-solid fa-user-plus"></i> Add Student
+                </a>
+                <a href="/schedule fol/schedule.html?v=202610102332" class="nav-item admin-only-nav">
+                    <i class="fa-solid fa-calendar-plus"></i> Create Schedule
+                </a>
+                <a href="/View schedule/View schedule.html?v=202610102332" class="nav-item admin-only-nav">
+                    <i class="fa-solid fa-bullhorn"></i> View Schedule
+                </a>
+                <a href="/Dashboard fol/create_account.html?v=202610102332" class="nav-item admin-only-nav">
+                    <i class="fa-solid fa-user-plus"></i> Create Account
+                </a>
+                <a href="/Dashboard fol/manage_users.html?v=202610102332" class="nav-item admin-only-nav">
+                    <i class="fa-solid fa-user-gear"></i> Manage Users
+                </a>
+
+                  <a href="/Dashboard fol/manage_professors.html?v=202610102332" class="nav-item admin-only-nav">
+                    <i class="fa-solid fa-chart-line"></i> Manage Professors
+                </a>
+                <a href="/About fol/about.html?v=202610102332" class="nav-item active">
+                    <i class="fa-solid fa-circle-info"></i> About
+                </a>
+            </div>
+        </nav>
+
+        <!-- CONTENT DISPLAY BODY AREA -->
+        <main class="main-body">
+            <div class="dashboard-content">
+
+                <!-- PAGE TITLE HEADER -->
+                <section class="page-title-section">
+                    <div class="title-text">
+                        <span id="aboutCategoryLabel" class="category-label">STUDENT MANAGEMENT</span>
+                        <h1 id="aboutPageTitle" class="page-heading">About System</h1>
+                    </div>
+                </section>
+
+                <!-- MAIN WHITE THEME CONTENT CARD -->
+                <div class="theme-card">
+                    <div class="card-header">
+                        <div class="header-text">
+                            <h3>System Guidance & Use Summary</h3>
+                            <p>Detailed overview of portal operations, section use structures, and user data rules.</p>
+                        </div>
+                    </div>
+
+                    <!-- SYSTEM SECTIONS DESCRIPTIVE SUMMARY -->
+                    <div class="info-section">
+                        <div class="use-grid">
+                            <div class="use-item">
+                                <div class="item-title"><i class="fa-solid fa-address-card"></i> Student & Faculty Portal</div>
+                                <p>Provides interactive management structures for logging structural profiles and managing class records dynamically.</p>
+                            </div>
+                            <div class="use-item">
+                                <div class="item-title"><i class="fa-solid fa-lock"></i> Security Management</div>
+                                <p>Protects institutional databases by securely monitoring login records to isolate unauthorized actions.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SYSTEM FOOTER ACTIONS NAVIGATION LINK PANEL -->
+                    <div class="system-footer-links">
+                        
+                        <div class="lnk-row">
+                            <i class="fa-solid fa-envelope"></i>
+                            <a onclick="toggleSection('sec-support')">Contact site support</a>
+                        </div>
+
+
+                        <div class="lnk-row">
+                            <i class="fa-solid fa-house"></i>
+                            <a id="aboutHomeLink" href="/Dashboard fol/Dashboard section.html?v=202610102332">Home</a>
+                        </div>
+
+                        <div class="lnk-row">
+                            <i class="fa-solid fa-database"></i>
+                            <a onclick="toggleSection('sec-retention')">Data retention summary</a>
+                        </div>
+
+                        <div class="lnk-row">
+                            <i class="fa-solid fa-address-book"></i>
+                            <a onclick="toggleSection('sec-campus')">Campus contact directories & socials</a>
+                        </div>
+
+                    </div>
+
+                    <!-- HIDDEN MODULAR REVEAL PANELS AREA -->
+                    
+                    <!-- Panel A: Data Retention Summary -->
+                    <div id="sec-retention" class="hidden-panel">
+                        <h4 class="section-title"><i class="fa-solid fa-database"></i> Data Retention Summary</h4>
+                        <p class="panel-desc">In accordance with institutional guidelines and compliance data privacy standards, the system retains active user access history records, profile configuration data blocks, and academic metadata. All locally cached testing structures remain securely isolated within your active client engine environment until a systematic request logs your profile out.</p>
+                    </div>
+
+                    <!-- Panel B: Tech Support Helpdesk -->
+                    <div id="sec-support" class="hidden-panel">
+                        <h4 class="section-title"><i class="fa-solid fa-screwdriver-wrench"></i> Technical Support Helpdesk</h4>
+                        <div class="badge-list">
+                            <div class="badge-item">
+                                <i class="fa-solid fa-envelope badge-icon"></i>
+                                <div class="badge-text"><span>Tech Email Support</span><strong>cjhaybibit10@gmail.com</strong></div>
+                            </div>
+                            <div class="badge-item">
+                                <i class="fa-solid fa-phone badge-icon"></i>
+                                <div class="badge-text"><span>Tech Hotline Support</span><strong>09706999988</strong></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Panel C: Campus Contacts & Socials Directories -->
+                    <div id="sec-campus" class="hidden-panel split-grid">
+                        <div>
+                            <h4 class="section-title"><i class="fa-solid fa-building-columns"></i> Campus Concerns</h4>
+                            <div class="badge-list">
+                                <div class="badge-item">
+                                    <i class="fa-solid fa-phone badge-icon"></i>
+                                    <div class="badge-text"><span>AVP's Office</span><strong>8-404-1644</strong></div>
+                                </div>
+                                <div class="badge-item">
+                                    <i class="fa-solid fa-phone badge-icon"></i>
+                                    <div class="badge-text"><span>Principal's Office</span><strong>8-641-4203</strong></div>
+                                </div>
+                                <div class="badge-item">
+                                    <i class="fa-solid fa-phone badge-icon"></i>
+                                    <div class="badge-text"><span>Registrar's Office</span><strong>8-997-8549</strong></div>
+                                </div>
+                                <div class="badge-item">
+                                    <i class="fa-solid fa-phone badge-icon"></i>
+                                    <div class="badge-text"><span>Bursar's Office</span><strong>8-643-8157</strong></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="section-title"><i class="fa-solid fa-location-dot"></i> Campus Location</h4>
+                            <div class="badge-item" style="margin-bottom: 20px;">
+                                <i class="fa-solid fa-location-arrow badge-icon location-badge"></i>
+                                <div class="badge-text"><span>University Address</span><strong>Pag-asa St., Brgy. Caniogan, Pasig City</strong></div>
+                            </div>
+                            
+                            <h4 class="section-title"><i class="fa-solid fa-share-nodes"></i> Official Channels</h4>
+                            <div class="channels-stack">
+                                <a href="http://arellano.edu.ph" target="_blank" class="web-btn institutional"><i class="fa-solid fa-globe"></i> www.arellano.edu.ph</a>
+                                <a href="mailto:hs.andresbonifacio@arellano.edu.ph" class="web-btn"><i class="fa-solid fa-envelope-open-text"></i> hs.andresbonifacio@arellano.edu.ph</a>
+                                <a href="https://facebook.com" target="_blank" class="web-btn facebook"><i class="fa-brands fa-facebook"></i> A.BonifacioCampus</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Connected About Page JavaScript -->
+    <script src="/auth-client.js?v=202610012123"></script>
+    <script src="/About fol/about_interaction.js?v=202609261659"></script>
+    <script src="/Profile pic_part/Profile.js?v=202609261659"></script>
+</body>
+</html>

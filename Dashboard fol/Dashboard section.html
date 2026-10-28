@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Information System - Dashboard</title>
+  <link rel="stylesheet" href="/Dashboard fol/dashboard design.css?v=202610120227">
+</head>
+<body>
+
+  <div class="app-container">
+
+    <!-- TIER 1: DARK TOP BRANDING BAR -->
+    <header class="top-header-brand">
+      <div class="brand-box">
+        <img src="/Profile%20pic_part/Arellano_University_New_Logo.png?v=202609280110" alt="Arellano Logo" class="brand-logo">
+        <span class="brand-name">Arellano University</span>
+      </div>
+
+      <div class="profile-box" onclick="navigateToProfile()" title="View Profile">
+        <span class="user-name" id="loggedInUser">KRISHA A. PADRIGON</span>
+        <div class="user-avatar"></div>
+      </div>
+    </header>
+
+    <!-- TIER 2: BLUE HORIZONTAL NAV BAR -->
+    <nav class="top-header-nav">
+      <div class="nav-links">
+        <a href="/Dashboard fol/Dashboard section.html?v=202610102332" class="nav-item active">
+          <i class="fa-solid fa-border-all"></i> Dashboard
+        </a>
+        <a href="/View students fol/View students.html?v=202610102332" class="nav-item">
+          <i class="fa-solid fa-users"></i> View Students
+        </a>
+        <a href="/Add students fol/Add students.html?v=202610102334" class="nav-item">
+          <i class="fa-solid fa-user-plus"></i> Add Student
+        </a>
+        <a href="/schedule fol/schedule.html?v=202610102332" class="nav-item">
+          <i class="fa-solid fa-calendar-plus"></i> Create Schedule
+        </a>
+        <a href="/View schedule/View schedule.html?v=202610102332" class="nav-item">
+          <i class="fa-solid fa-bullhorn"></i> View Schedule
+        </a>
+        <a href="/Dashboard fol/create_account.html?v=202610102334" class="nav-item">
+          <i class="fa-solid fa-user-plus"></i> Create Account
+        </a>
+        <a href="/Dashboard fol/manage_users.html?v=202610102332" class="nav-item">
+          <i class="fa-solid fa-user-gear"></i> Manage Users
+        </a>
+        <a href="/Dashboard fol/manage_professors.html?v=202610102332" class="nav-item">
+          <i class="fa-solid fa-user-tie"></i> Manage Professors
+        </a>
+        <a href="/About fol/about.html?v=202610102334" class="nav-item">
+          <i class="fa-solid fa-circle-info"></i> About
+        </a>
+      </div>
+    </nav>
+
+    <!-- MAIN BODY CONTENT -->
+    <main class="main-body">
+      <div class="dashboard-content">
+
+        <!-- WELCOME BANNER HEADER -->
+        <section class="welcome-section">
+          <div class="welcome-text">
+            <span class="category-label">ACADEMIC OVERVIEW</span>
+            <h1 class="welcome-heading" id="welcomeHeading">Welcome, Administrator</h1>
+          </div>
+        </section>
+        
+        <!-- TOP STAT CARDS -->
+        <div class="stats-box">
+          <!-- Total Students Card -->
+          <div class="stat-card total-card">
+            <div class="stat-info">
+              <h3>TOTAL STUDENTS IN CLASS</h3>
+              <p id="statTotal" class="stat-number">0</p>
+            </div>
+            <div class="stat-icon icon-blue">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+          </div>
+
+          <!-- Active Students Card -->
+          <div class="stat-card active-card">
+            <div class="stat-info">
+              <h3>ACTIVE STUDENTS</h3>
+              <p id="statActive" class="stat-number highlight-orange">0</p>
+            </div>
+            <div class="stat-icon icon-orange-light">
+              <i class="fa-solid fa-circle"></i>
+            </div>
+          </div>
+
+          <!-- Shifted Students Card -->
+          <div class="stat-card shifted-card">
+            <div class="stat-info">
+              <h3>SHIFTED STUDENTS</h3>
+              <p id="statShifted" class="stat-number highlight-purple">0</p>
+            </div>
+            <div class="stat-icon icon-purple">
+              <i class="fa-solid fa-right-left"></i>
+            </div>
+          </div>
+
+          <!-- Dropped Students Card -->
+          <div class="stat-card dropped-card">
+            <div class="stat-info">
+              <h3>DROPPED STUDENTS</h3>
+              <p id="statDropped" class="stat-number">0</p>
+            </div>
+            <div class="stat-icon icon-gray">
+              <i class="fa-solid fa-user-xmark"></i>
+            </div>
+          </div>
+
+
+        </div>
+
+          <!-- CUSTOM CONFIRMATION MODAL -->
+        <div id="customModal" class="custom-modal" style="display: none;">
+          <div class="modal-overlay"></div>
+          <div class="modal-card">
+            <div class="modal-header">
+              <i id="modalIcon" class="fa-solid fa-triangle-exclamation"></i>
+              <h3 id="modalTitle">Confirm Action</h3>
+            </div>
+            <div class="modal-body">
+              <p id="modalMessage">Are you sure you want to proceed?</p>
+            </div>
+            <div class="modal-footer">
+              <button id="modalCancelBtn" class="btn-secondary">Cancel</button>
+              <button id="modalConfirmBtn" class="btn-primary">Confirm</button>
+            </div>
+          </div>
+        </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- MIDDLE SECTION: ENROLLED COURSES -->
+        <!-- CURRENT CLASSES -->
+        <div class="bottom-box">
+          <div class="courses-section">
+            <div class="section-header">
+              <div>
+                <h2>Current Classes</h2>
+                <p class="section-sub">Every class list, who teaches it, and when it meets.</p>
+              </div>
+              <div class="header-icon">
+                <i class="fa-solid fa-book-open-reader"></i>
+              </div>
+            </div>
+
+            <div id="classOverviewContainer" class="courses-list">
+              <p class="empty-text">Loading classes...</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Bumping script version parameter to ?v=5 to force browser cache renewal -->
+    <script src="/auth-client.js?v=202610012123"></script>
+  <script src="/socket.io/socket.io.min.js"></script>
+  <script src="Dashboardfunc.js?v=202610120930"></script>
+  <script src="/Profile pic_part/Profile.js?v=202609261659"></script>
+</body>
+</html>

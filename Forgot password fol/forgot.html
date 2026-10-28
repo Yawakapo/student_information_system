@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password - Arellano SIS</title>
+    <link rel="stylesheet" href="Forgot_design.css?v=202610121150">
+</head>
+
+<body>
+<div class="split-container">
+
+    <!-- LEFT SIDE BRANDING -->
+    <div class="brand-side">
+        <img src="/Profile%20pic_part/Arellano_University_New_Logo.png?v=202609280110"
+             alt="Arellano University Logo"
+             class="sis-logo-img">
+
+        <h1 class="sis-title">ARELLANO'S</h1>
+        <p class="sis-sub">Student Information System</p>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="form-side">
+        <div class="sis-box">
+
+            <!-- STEP 1: ACCOUNT INFORMATION -->
+            <div class="step active" id="step1">
+                <div class="step-label">STEP 1 OF 4</div>
+
+                <h2>Forgot Password?</h2>
+                <p class="description">
+                    Enter your account information to receive a verification code.
+                </p>
+
+                <div class="f-group">
+                    <label for="userRole">Account Type</label>
+                    <select id="userRole" class="f-in" required>
+                        <option value="student">Student</option>
+                        <option value="teacher">Professor</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+
+                <div class="f-group">
+                    <label for="accountID" id="accountIDLabel">Student No. or Username</label>
+                    <input type="text"
+                           id="accountID"
+                           class="f-in"
+                           placeholder="Enter your student no. or username"
+                           required>
+                </div>
+
+                <div class="f-group">
+                    <label for="accountEmail">Registered Email</label>
+                    <input type="email"
+                           id="accountEmail"
+                           class="f-in"
+                           placeholder="Enter registered email"
+                           autocomplete="email"
+                           required>
+                </div>
+
+                <p class="error-message" id="error1" aria-live="polite" style="color: red; font-size: 0.85rem; margin-top: 5px;"></p>
+
+                <button type="button"
+                        class="f-btn"
+                        onclick="verifyAccount()">
+                    Send Verification Code
+                </button>
+
+                <div class="bottom-links">
+                    <a href="../Login part/login.html?v=202610102332" class="back-login">
+                        ← Back to Login
+                    </a>
+                </div>
+            </div>
+
+            <!-- STEP 2: OTP VERIFICATION -->
+            <div class="step" id="step2" style="display: none;">
+                <div class="step-label">STEP 2 OF 4</div>
+
+                <h2>Email Verification</h2>
+                <p class="description">
+                    Enter the 6-digit code sent to <strong id="emailDisplay"></strong>.
+                </p>
+
+                <div class="f-group">
+                    <label for="verificationCode">Verification Code</label>
+                    <input type="text"
+                           id="verificationCode"
+                           class="f-in verification-input"
+                           maxlength="6"
+                           inputmode="numeric"
+                           pattern="[0-9]*"
+                           placeholder="000000"
+                           autocomplete="one-time-code"
+                           required>
+
+                    <!-- Shown only when this machine has no connection, so no
+                         email can be sent. The server sends the code back with
+                         its reply and it is printed here instead. -->
+                    <p class="password-hint offline-code-note" id="offlineCodeNote" hidden></p>
+                </div>
+
+                <p class="error-message" id="error2" aria-live="polite" style="color: red; font-size: 0.85rem; margin-top: 5px;"></p>
+
+                <div class="button-row" style="display: flex; gap: 10px; margin-bottom: 10px;">
+                    <button type="button"
+                            class="secondary-btn"
+                            onclick="showStep(1)">
+                        Back
+                    </button>
+
+                    <button type="button"
+                            class="f-btn"
+                            onclick="verifyCode()">
+                        Verify Code
+                    </button>
+                </div>
+
+                <button type="button"
+                        class="resend-btn"
+                        onclick="resendCode()">
+                    Resend Code
+                </button>
+            </div>
+
+            <!-- STEP 3: CREATE NEW PASSWORD -->
+            <div class="step" id="step3" style="display: none;">
+                <div class="step-label">STEP 3 OF 4</div>
+
+                <h2>Create New Password</h2>
+                <p class="description">
+                    Create a new password for your account.
+                </p>
+
+                <div class="f-group">
+                    <label for="newPassword">New Password</label>
+                    <div class="password-wrapper">
+                        <input type="password"
+                               id="newPassword"
+                               class="f-in"
+                               placeholder="Enter new password"
+                               autocomplete="new-password"
+                               required>
+
+                        <button type="button"
+                                class="show-btn"
+                                onclick="togglePassword('newPassword', this)">
+                            Show
+                        </button>
+                    </div>
+                </div>
+
+                <div class="f-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <div class="password-wrapper">
+                        <input type="password"
+                               id="confirmPassword"
+                               class="f-in"
+                               placeholder="Confirm password"
+                               autocomplete="new-password"
+                               required>
+
+                        <button type="button"
+                                class="show-btn"
+                                onclick="togglePassword('confirmPassword', this)">
+                            Show
+                        </button>
+                    </div>
+                </div>
+
+                <p class="password-hint" style="font-size: 0.8rem; color: #666; margin-top: 5px;">
+                    Password must contain at least 8 characters.
+                </p>
+
+                <p class="error-message" id="error3" aria-live="polite" style="color: red; font-size: 0.85rem; margin-top: 5px;"></p>
+
+                <button type="button"
+                        class="f-btn"
+                        onclick="resetPassword()">
+                    Update Password
+                </button>
+            </div>
+
+            <!-- STEP 4: SUCCESS -->
+            <div class="step success-section" id="step4" style="display: none;">
+                <h2>Password Changed!</h2>
+
+                <p class="description">
+                    Your password has been successfully changed.
+                    You can now log in using your new password.
+                </p>
+
+                <a href="../Login part/login.html?v=202610102332" class="login-button">
+                    Return to Login
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- EXTERNAL JAVASCRIPT FILE -->
+<script src="/auth-client.js?v=202610012123"></script>
+<script src="Forgot_interactions.js?v=202610121149"></script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+.account-page {
+  width: min(100% - 32px, 920px);
+  margin: 0 auto;
+  padding: 42px 0 56px;
+}
+
+.account-page h1 {
+  margin: 8px 0;
+  color: #0b192c;
+  font-size: clamp(28px, 4vw, 38px);
+}
+
+.account-page > p {
+  color: #475569;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.account-note {
+  margin-top: 18px;
+  padding: 14px 16px;
+  border-radius: 7px;
+  background: #eff6ff;
+  color: #1e3a8a !important;
+  font-weight: 600;
+}
+
+.account-card {
+  margin-top: 26px;
+  padding: 28px;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+.account-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 24px;
+}
+
+.account-card label {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  min-width: 0;
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.account-form-grid > label {
+  align-self: start;
+}
+
+.account-card label[hidden],
+.account-card [hidden] {
+  display: none !important;
+}
+
+.account-card input,
+.account-card select {
+  width: 100%;
+  min-width: 0;
+  padding: 12px 13px;
+  border: 1px solid #94a3b8;
+  border-radius: 8px;
+  background: #f8fafc;
+  color: #0f172a;
+  font: inherit;
+  font-size: 16px;
+}
+
+.account-field-hint {
+  min-height: 18px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.account-field-hint.success { color: #15803d; }
+.account-field-hint.warning { color: #a16207; }
+.account-field-hint.error { color: #b91c1c; }
+.account-field-hint.checking { color: #1d4ed8; }
+
+.account-password-label,
+.account-teacher-name {
+  grid-column: 1 / -1;
+}
+
+.password-field {
+  display: flex;
+  gap: 8px;
+}
+
+.password-field input {
+  flex: 1;
+}
+
+.password-field button,
+.account-card > button,
+.account-form-actions > button {
+  border: 0;
+  border-radius: 8px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.password-field button {
+  min-width: 72px;
+  padding: 0 14px;
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.password-field button:hover { background: #cbd5e1; }
+
+.account-card p {
+  min-height: 22px;
+  margin: 18px 0 0;
+  color: #15803d;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.account-card p.error { color: #b42318; }
+
+.account-form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 4px;
+  padding-top: 20px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.account-form-actions > button {
+  padding: 12px 20px;
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.account-form-actions > button:hover { background: #1d4ed8; }
+.account-form-actions > button:disabled { opacity: 0.65; cursor: wait; }
+
+.account-secondary-action {
+  color: #1d4ed8;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.account-secondary-action:hover { text-decoration: underline; }
+
+@media screen and (max-width: 700px) {
+  .account-page { padding-top: 28px; }
+  .account-card { padding: 20px; }
+  .account-form-grid { grid-template-columns: 1fr; gap: 16px; }
+  .account-password-label,
+  .account-teacher-name { grid-column: auto; }
+  .account-form-actions { align-items: stretch; flex-direction: column; }
+  .account-form-actions > button { width: 100%; }
+  .account-secondary-action { text-align: center; }
+}
+
+/* Pointer over a field
+   The outline darkens a little, which is the only thing that changes. It tells
+   you the box under the pointer is one you can type in. */
+.account-card input:hover,
+.account-card select:hover {
+  border-color: #94a3b8;
+}
+
+/* INPUT_HOVER_SENTINEL */

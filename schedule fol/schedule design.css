@@ -1,0 +1,498 @@
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f4f6f9;
+  color: #333;
+  min-height: 100vh;
+  /* Follows the real viewport on iPhone, where the toolbar resizes. */
+  min-height: 100dvh;
+}
+
+/* =====================================================================
+   TIER 1: DARK TOP BRANDING BAR
+   ===================================================================== */
+.top-header-brand {
+  background-color: #0b192c;
+  padding: 10px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+
+.brand-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-logo {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+}
+
+.brand-name {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.profile-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.user-name {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.user-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1e293b;
+  flex-shrink: 0;
+}
+
+.user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =====================================================================
+   TIER 2: BLUE NAVIGATION BAR & BROWSER TABS
+   ===================================================================== */
+.top-header-nav {
+  background-color: #1e50e2;
+  padding: 0 32px;
+  display: flex;
+  align-items: flex-end; /* Anchors active tab flush with page background */
+  height: 54px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 6px;
+  align-items: flex-end;
+  height: 100%;
+  min-width: max-content;
+}
+
+.nav-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px 8px 0 0; /* Top corners rounded, bottom flat */
+  transition: all 0.2s ease;
+  height: 42px;
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.18);
+}
+
+/* ACTIVE TAB (Matching View Schedule Tab Indicator) */
+.nav-item.active {
+  background-color: #f4f6f9; /* Merges seamlessly with body background */
+  color: #1e50e2;            /* Active Blue Text */
+  font-weight: 700;
+  height: 46px;              /* 4px taller to pop down flush to body */
+  border-radius: 8px 8px 0 0;
+}
+
+.nav-item.active i {
+  color: #1e50e2;
+}
+
+/* =====================================================================
+   MAIN CONTAINER & PAGE HEADER
+   ===================================================================== */
+.container, .main-body {
+  width: 90%;
+  max-width: 1200px;
+  margin: 28px auto;
+  padding: 0 16px;
+}
+
+.page-category {
+  color: #1e50e2;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.page-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: #0b192c;
+  margin-bottom: 24px;
+}
+
+/* =====================================================================
+   CREATE SCHEDULE FORM CARD
+   ===================================================================== */
+.form-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 28px 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.form-card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.form-card-icon {
+  width: 44px;
+  height: 44px;
+  background-color: #eff6ff;
+  color: #1e50e2;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.form-card-header h2 {
+  font-size: 18px;
+  font-weight: 800;
+  color: #0b192c;
+}
+
+.form-card-header p {
+  font-size: 13px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+/* ERROR & SUCCESS NOTIFICATION BANNER */
+.error-banner {
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 12px 16px;
+}
+
+/* GRID ROWS & INPUT FIELD STYLES */
+#createScheduleForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.form-group-wide {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #1e293b;
+  outline: none;
+  background-color: #f8fafc;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.form-group input::placeholder {
+  color: #94a3b8;
+}
+
+/* TIME INPUT WITH AM/PM DROPDOWN GROUP */
+.time-input-group {
+  display: flex;
+  gap: 8px;
+}
+
+.time-input-group input {
+  flex: 1;
+}
+
+.time-input-group select {
+  width: auto;
+  min-width: 80px;
+}
+
+/* ACTION BUTTONS */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.btn-clear {
+  padding: 10px 20px;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-clear:hover {
+  background-color: #f1f5f9;
+}
+
+.btn-submit {
+  padding: 10px 24px;
+  background-color: #1e50e2;
+  border: none;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-submit:hover {
+  background-color: #1b47c8;
+  transform: translateY(-1px);
+}
+
+/* RESPONSIVE BREAKPOINT */
+@media screen and (max-width: 768px) {
+  .top-header-brand {
+    padding-inline: 16px;
+  }
+
+  /* Visible scrollbar so the off-screen tabs are discoverable. */
+  .top-header-nav {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-color: rgba(255, 255, 255, 0.55) rgba(255, 255, 255, 0.15);
+  }
+
+  .top-header-nav::-webkit-scrollbar { height: 6px; }
+  .top-header-nav::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.15); }
+  .top-header-nav::-webkit-scrollbar-thumb { border-radius: 3px; background: rgba(255, 255, 255, 0.55); }
+
+  .nav-item {
+    padding-inline: 14px;
+    font-size: 13px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .form-card {
+    padding: 20px;
+  }
+}
+
+
+
+
+
+/* =====================================================================
+   FLASH-FREE & ULTRA-FLUID MOTION
+   ===================================================================== */
+
+/* 1. Page Fade (Starts Visible at 100% Opacity to Eliminate Flashing) */
+body {
+  animation: smoothPageFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) ease-out;
+}
+
+@keyframes smoothPageFade {
+  from {
+    transform: translate3d(0, 6px, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* 2. Fluid Navigation Tab Hover/Active Physics */
+.nav-item {
+  transition: 
+    background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform;
+}
+
+.nav-item:hover {
+  transform: translate3d(0, -2px, 0);
+}
+
+.nav-item:active {
+  transform: translate3d(0, 0, 0) scale(0.97);
+}
+
+/* 3. Smooth Card Entrance (Without Pre-Opacity Hidden Flash) */
+.stat-card,
+.form-card,
+.courses-section,
+.table-container {
+  animation: fluidSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) ease-out;
+  transition: 
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, box-shadow;
+}
+
+@keyframes fluidSlideUp {
+  from {
+    transform: translate3d(0, 12px, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Card Hover Lift */
+.stat-card:hover,
+.course-card-item:hover {
+  transform: translate3d(0, -3px, 0);
+  box-shadow: 0 10px 24px rgba(11, 25, 44, 0.08);
+}
+
+.course-card-item {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 4. Smooth Input Focus Glow */
+.form-group input,
+.form-group select {
+  transition: 
+    border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.2s ease;
+}
+
+/* 5. Tactile Button Click Interactions */
+.btn-submit,
+.btn-clear,
+.delete-btn {
+  transition: 
+    background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.btn-submit:hover {
+  background-color: #1b47c8;
+  transform: translate3d(0, -2px, 0);
+  box-shadow: 0 6px 16px rgba(30, 80, 226, 0.25);
+}
+
+.btn-submit:active,
+.btn-clear:active,
+.delete-btn:active {
+  transform: translate3d(0, 0, 0) scale(0.97) !important;
+  box-shadow: none;
+}
+
+.btn-clear:hover {
+  background-color: #f1f5f9;
+  transform: translate3d(0, -1px, 0);
+}
+
+.delete-btn:hover {
+  background-color: #dc2626;
+  transform: translate3d(0, -2px, 0);
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.25);
+}
+
+/* 6. Smooth Row Deletion (GPU Transform Only) */
+.schedule-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.schedule-table tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+.schedule-table tr.deleting {
+  animation: smoothRowSlide 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes smoothRowSlide {
+  to {
+    opacity: 0;
+    transform: translate3d(16px, 0, 0);
+  }
+}
+
+/* Smooth Progress Fill */
+.progress-fill {
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+/* Pointer over a field
+   The outline darkens a little, which is the only thing that changes. It tells
+   you the box under the pointer is one you can type in. */
+.form-group input:hover,
+.form-group select:hover {
+  border-color: #94a3b8;
+}
+
+/* INPUT_HOVER_SENTINEL */

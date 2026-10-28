@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Schedule Portal</title>
+  <link rel="stylesheet" href="/View schedule/View schedule design.css?v=202610120217">
+  <link rel="stylesheet" href="/students dashboard fol/student_sched.css?v=202609242208">
+</head>
+<body>
+  <header class="student-header">
+    <div class="student-brand">
+      <img src="/Profile%20pic_part/Arellano_University_New_Logo.png?v=202609280110" alt="Logo">
+      <span>Arellano University</span>
+    </div>
+    <nav class="student-nav" aria-label="Student navigation">
+      <a href="../students dashboard fol/student_dashboard.html?v=202610102334"><i class="fa-solid fa-house"></i> Dashboard</a>
+      <a href="/Profile pic_part/Profile section.html?v=202610102334" class="profile-link"><i class="fa-solid fa-user"></i> Profile</a>
+      <a href="#" id="studentLogoutLink"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+    </nav>
+  </header>
+
+  <main class="student-schedule-main">
+    <p class="student-eyebrow">STUDENT PORTAL</p>
+    <h1>My Class Schedule</h1>
+    <div class="student-schedule-toolbar">
+      <p class="student-subtitle">All assigned schedules are shown below. Use the course and professor controls to narrow the list.</p>
+      <button id="refreshStudentSchedule" class="student-refresh-button" type="button"><i class="fa-solid fa-rotate"></i> Refresh schedule</button>
+    </div>
+    <div id="studentScheduleChoices" class="schedule-group-choices">Loading your course...</div>
+
+    <div id="studentScheduleTable" class="student-schedule-card" hidden>
+      <div class="student-schedule-table-wrap">
+        <table class="student-schedule-table">
+          <thead>
+            <tr>
+              <th>SUBJECT</th>
+              <th>PROFESSOR</th>
+              <th>COURSE</th>
+              <th>ROOM</th>
+              <th>DAY</th>
+              <th>TIME</th>
+            </tr>
+          </thead>
+          <tbody id="studentScheduleBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+    <script src="/auth-client.js?v=202610012123"></script>
+  <script src="/socket.io/socket.io.min.js"></script>
+  <script src="/students dashboard fol/student_sched.js?v=202609280049"></script>
+</body>
+</html>

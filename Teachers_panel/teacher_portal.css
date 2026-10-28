@@ -1,0 +1,228 @@
+@import url('teacher_dashboard.css');
+
+.page-header {
+	display: flex;
+	align-items: end;
+	justify-content: space-between;
+	gap: 20px;
+	margin-bottom: 28px;
+}
+
+.back-link {
+	color: #2563eb;
+	font-weight: 700;
+	text-decoration: none;
+}
+
+.back-link:hover {
+	text-decoration: underline;
+}
+
+.profile-link {
+	color: #2563eb;
+	font-weight: 700;
+	text-decoration: none;
+}
+
+.profile-link:hover {
+	text-decoration: underline;
+}
+
+.content-card {
+	overflow: hidden;
+	border: 1px solid #e3e9f1;
+	border-radius: 14px;
+	background: #fff;
+	box-shadow: 0 6px 20px rgba(22, 39, 65, 0.06);
+}
+
+.table-wrap {
+	overflow-x: auto;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	text-align: left;
+}
+
+th {
+	padding: 14px 18px;
+	background: #0d1b2a;
+	color: #fff;
+	font-size: 0.78rem;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+td {
+	padding: 15px 18px;
+	border-bottom: 1px solid #edf1f5;
+	color: #3e4c60;
+}
+
+tr:last-child td {
+	border-bottom: 0;
+}
+
+.toolbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 18px;
+}
+
+.toolbar input {
+	width: min(360px, 100%);
+	padding: 10px 12px;
+	border: 1px solid #cbd5e1;
+	border-radius: 7px;
+	font: inherit;
+}
+
+.status {
+	display: inline-block;
+	padding: 4px 8px;
+	border-radius: 999px;
+	background: #dcfce7;
+	color: #166534;
+	font-size: 0.8rem;
+	font-weight: 700;
+}
+
+.pending {
+	background: #fef3c7;
+	color: #92400e;
+}
+
+.button {
+	padding: 8px 12px;
+	border: 0;
+	border-radius: 6px;
+	font: inherit;
+	font-size: 0.85rem;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+.approve {
+	background: #18794e;
+	color: #fff;
+}
+
+.reject {
+	margin-left: 7px;
+	background: #b42318;
+	color: #fff;
+}
+
+.button:hover {
+	filter: brightness(0.94);
+}
+
+.form-card {
+	padding: 24px;
+	border-bottom: 1px solid #e3e9f1;
+}
+
+.form-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 16px;
+}
+
+.form-group {
+	display: flex;
+	flex-direction: column;
+	gap: 7px;
+}
+
+.form-group label {
+	color: #334155;
+	font-size: 0.88rem;
+	font-weight: 700;
+}
+
+.form-group input,
+.form-group select {
+	padding: 10px 12px;
+	border: 1px solid #cbd5e1;
+	border-radius: 7px;
+	font: inherit;
+}
+
+.form-actions {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 18px;
+}
+
+.save {
+	background: #2563eb;
+	color: #fff;
+}
+
+.notice {
+	margin: 0;
+	padding: 16px 18px;
+	color: #64748b;
+	text-align: center;
+}
+
+.error {
+	color: #b42318;
+}
+
+.subject-list { padding: 10px 18px; }
+.teacher-department-group { border-bottom: 1px solid #cbd5e1; }
+.teacher-department-group:last-child { border-bottom: 0; }
+.teacher-department-option { display: block; width: 100%; padding: 14px 0; border: 0; background: transparent; color: #0b192c; font: inherit; font-size: 1.05rem; font-weight: 800; text-align: left; cursor: pointer; }
+.teacher-department-option::before { content: '›'; display: inline-block; margin-right: 5px; font-size: 1.35rem; vertical-align: -1px; }.teacher-department-option:hover, .teacher-department-option.selected { color: #2563eb; }
+.teacher-department-subject-options { margin-left: 14px; padding-left: 12px; }
+.teacher-subject-group { border-bottom: 1px solid #dbe4f0; }
+.teacher-subject-group:last-child { border-bottom: 0; }
+.teacher-subject-option { display: block; width: 100%; padding: 13px 0; border: 0; background: transparent; color: #152238; font: inherit; font-weight: 800; text-align: left; cursor: pointer; }
+.teacher-subject-option::before { content: '›'; display: inline-block; margin-right: 5px; font-size: 1.35rem; vertical-align: -1px; }
+.teacher-subject-option:hover, .teacher-subject-option.selected { color: #2563eb; }
+.teacher-schedule-options { margin-left: 17px; padding: 0 12px; background: #f8fafc; }
+.subject-option { display: block; width: 100%; padding: 12px 0; border: 0; border-bottom: 1px solid #edf1f5; background: transparent; color: #1f2937; font: inherit; text-align: left; cursor: pointer; }
+.subject-option:last-child { border-bottom: 0; }
+.subject-option:hover { color: #2563eb; }
+.subject-option::before { content: '↳'; display: inline-block; margin-right: 7px; color: #152238; }
+.assigned-students { margin-top: 22px; padding: 22px; }
+.assigned-students-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
+.assigned-students h2 { margin: 0; font-size: 1.2rem; }
+.teacher-export-button { padding: 9px 14px; border: 0; border-radius: 7px; background: #2563eb; color: #fff; font: inherit; font-size: .85rem; font-weight: 700; cursor: pointer; }
+.teacher-export-button:hover:not(:disabled) { background: #1d4ed8; }
+.teacher-export-button:disabled { background: #cbd5e1; color: #64748b; cursor: not-allowed; }
+
+@media (max-width: 640px) {
+	.page-header {
+		align-items: flex-start;
+		flex-direction: column;
+	}
+
+	.form-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.assigned-students-header {
+		align-items: stretch;
+		flex-direction: column;
+	}
+
+	.teacher-export-button {
+		width: 100%;
+	}
+}
+
+/* Pointer over a field
+   The outline darkens a little, which is the only thing that changes. It tells
+   you the box under the pointer is one you can type in. */
+.form-group input:hover,
+.form-group select:hover {
+  border-color: #94a3b8;
+}
+
+/* INPUT_HOVER_SENTINEL */

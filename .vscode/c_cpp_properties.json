@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "name": "mingw",
+            "compilerPath": "C:/mingw64/bin/gcc.exe",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-gcc-x64",
+            "includePath": [
+                "${workspaceFolder}/backend",
+                "C:/Program Files/MySQL/MySQL Server 8.0/include"
+            ],
+            "defines": [
+                "_DEBUG",
+                "WIN32",
+                "_WIN32"
+            ]
+        }
+    ],
+    "version": 4
+}

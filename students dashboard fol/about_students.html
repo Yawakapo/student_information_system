@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal - About System</title>
+    <link rel="stylesheet" href="../Dashboard fol/dashboard design.css?v=202610120227">
+</head>
+<body>
+    <!-- Top Navigation Bar for Students -->
+    <div style="background: #0d1b2a; padding: 15px 30px; display: flex; align-items: center; justify-content: space-between; color: white;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <img src="/Profile%20pic_part/Arellano_University_New_Logo.png?v=202609280110" alt="Logo" style="height: 35px;">
+            <span style="font-weight: bold; font-size: 1.1rem;">Arellano University | Student Portal</span>
+        </div>
+        <div>
+            <a href="student_dashboard.html?v=202610102332" style="color: white; text-decoration: none; margin-right: 20px;"><i class="fa-solid fa-house"></i> Dashboard</a>
+            <a href="/Profile pic_part/Profile section.html?v=202610102334" class="profile-link" style="color: #60a5fa; text-decoration: none; margin-right: 20px;"><i class="fa-solid fa-user"></i> Profile</a>
+            <a href="#" id="logoutBtn" style="color: #ff6b6b; text-decoration: none;"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        </div>
+    </div>
+
+    <div style="padding: 40px; max-width: 900px; margin: 0 auto;">
+        <h3 style="color: #555; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;">Student Portal</h3>
+        <h2 style="font-size: 2rem; color: #111; margin-bottom: 25px;">About the Student Portal</h2>
+
+        <!-- Overview Card -->
+        <div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 25px;">
+            <h3 style="color: #0d1b2a; margin-bottom: 10px;"><i class="fa-solid fa-graduation-cap"></i> System Information</h3>
+            <p style="color: #555; line-height: 1.6; font-size: 0.95rem;">
+                The Arellano University Student Portal allows students to access their official class schedules, room assignments, and subject details in real time.
+            </p>
+        </div>
+
+        <!-- Help & Support Card -->
+        <div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+            <h3 style="color: #0d1b2a; margin-bottom: 15px;"><i class="fa-solid fa-headset"></i> Need Assistance?</h3>
+            <p style="color: #555; line-height: 1.6; font-size: 0.95rem; margin-bottom: 15px;">
+                If you notice missing schedules or discrepancies in your course enrollment, please reach out to the Registrar's Office or IT Services.
+            </p>
+            <ul style="list-style: none; padding: 0; color: #444; line-height: 2;">
+                <li><i class="fa-solid fa-envelope" style="color: #0d1b2a; margin-right: 10px;"></i> <strong>IT Support:</strong> cjhaybibit10@gmail.com</li>
+                <li><i class="fa-solid fa-building" style="color: #0d1b2a; margin-right: 10px;"></i> <strong>Office:</strong> AU Registrar's Office</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="/auth-client.js?v=202610012123"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const userId = localStorage.getItem('user_id');
+            const role = localStorage.getItem('role');
+
+            if (!userId || role !== 'student') {
+                window.location.href = '../Login part/login.html?v=202610102334';
+                return;
+            }
+
+            document.getElementById('logoutBtn').addEventListener('click', (e) => {
+                e.preventDefault();
+                window.sisLogout?.('../Login part/login.html');
+            });
+        });
+    </script>
+</body>
+</html>

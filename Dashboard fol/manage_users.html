@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Users - Admin</title>
+  <link rel="stylesheet" href="dashboard design.css?v=202610120227">
+  <link rel="stylesheet" href="manage_users.css?v=202609251543">
+</head>
+<body>
+  <header class="top-header-brand">
+    <div class="brand-box">
+      <img src="/Profile%20pic_part/Arellano_University_New_Logo.png?v=202609280110" alt="Arellano logo" class="brand-logo">
+      <span class="brand-name">Arellano University</span>
+    </div>
+    <div class="profile-box" onclick="navigateToProfile()" title="View Profile">
+      <span class="user-name">Administrator</span>
+      <div class="user-avatar"></div>
+    </div>
+  </header>
+
+  <nav class="top-header-nav">
+    <div class="nav-links">
+      <a href="/Dashboard fol/Dashboard section.html?v=202610102334" class="nav-item">Dashboard</a>
+      <a href="/View students fol/View students.html?v=202610102332" class="nav-item">View Students</a>
+      <a href="/Add students fol/Add students.html?v=202610102334" class="nav-item">Add Student</a>
+      <a href="/schedule fol/schedule.html?v=202610102332" class="nav-item">Create Schedule</a>
+      <a href="/View schedule/View schedule.html?v=202610102332" class="nav-item">View Schedule</a>
+      <a href="create_account.html?v=202610102334" class="nav-item">Create Account</a>
+      <a href="manage_users.html?v=202610102332" class="nav-item active">Manage Users</a>
+      <a href="manage_professors.html?v=202610102334" class="nav-item">Manage Professors</a>
+      <a href="/About fol/about.html?v=202610102334" class="nav-item">About</a>
+    </div>
+  </nav>
+
+  <main class="main-body">
+    <div class="manage-users-page">
+      <section class="manage-title">
+        <div>
+          <p class="category-label">ADMIN PANEL</p>
+          <h1>Manage Users</h1>
+          <p>Review account access and activation status.</p>
+          <p class="manage-helper">For students, <strong>Delete Account</strong> keeps the student record and class-list assignment. Use <strong>Delete Student Record</strong> only when both should be removed.</p>
+        </div>
+        <div class="manage-title-actions">
+          <a class="btn-secondary" href="manage_professors.html?v=202610102334">Manage Professors</a>
+          <a class="btn-primary" href="create_account.html?v=202610102334">+ Create Account</a>
+        </div>
+      </section>
+
+      <section class="manage-card">
+        <div class="manage-toolbar">
+          <label class="manage-search">
+            <span>Search users</span>
+            <input id="userSearch" type="search" placeholder="Name, username, email, or account number">
+          </label>
+          <label>
+            <span>Role</span>
+            <select id="roleFilter">
+              <option value="">All roles</option>
+              <option value="admin">Admin</option>
+              <option value="teacher">Professor</option>
+              <option value="student">Student</option>
+            </select>
+          </label>
+          <label>
+            <span>Status</span>
+            <select id="statusFilter">
+              <option value="">All statuses</option>
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+            </select>
+          </label>
+          <button id="refreshUsers" class="btn-secondary" type="button">Refresh</button>
+        </div>
+
+        <p id="usersMessage" class="users-message" aria-live="polite"></p>
+        <div class="users-table-wrap">
+          <table class="users-table">
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Role</th>
+                <th>Account number</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="usersTableBody">
+              <tr><td colspan="5" class="table-message">Loading users...</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <div id="editAccountModal" class="edit-account-modal" hidden>
+    <div class="edit-account-card" role="dialog" aria-modal="true" aria-labelledby="editAccountTitle">
+      <button type="button" class="edit-account-close" id="closeEditAccount" aria-label="Close edit account dialog">×</button>
+      <h2 id="editAccountTitle">Edit Account</h2>
+      <p id="editAccountDescription" class="edit-account-description"></p>
+      <form id="editAccountForm">
+        <input type="hidden" id="editAccountId">
+        <div class="edit-account-field">
+          <label for="editAccountEmail">Email address</label>
+          <input type="email" id="editAccountEmail" required autocomplete="email">
+        </div>
+        <div class="edit-account-field">
+          <label for="editAccountPassword">New password</label>
+          <div class="edit-password-field">
+            <input type="password" id="editAccountPassword" minlength="8" autocomplete="new-password" placeholder="Leave blank to keep current password">
+            <button type="button" id="toggleEditPassword" class="edit-password-toggle">Show</button>
+          </div>
+          <small>Use at least 8 characters. Leave blank if you do not want to change it.</small>
+        </div>
+        <div class="edit-account-field">
+          <label for="editAccountConfirmPassword">Confirm new password</label>
+          <div class="edit-password-field">
+            <input type="password" id="editAccountConfirmPassword" minlength="8" autocomplete="new-password" placeholder="Repeat the new password">
+            <button type="button" id="toggleEditConfirmPassword" class="edit-password-toggle">Show</button>
+          </div>
+        </div>
+        <p id="editAccountMessage" class="edit-account-message" aria-live="polite"></p>
+        <div class="edit-account-actions">
+          <button type="button" class="btn-secondary" id="cancelEditAccount">Cancel</button>
+          <button type="submit" class="btn-primary" id="saveEditAccount">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/auth-client.js?v=202610012123"></script>
+  <script src="manage_users.js?v=202610061823"></script>
+  <script src="/Profile pic_part/Profile.js?v=202609261659"></script>
+</body>
+</html>

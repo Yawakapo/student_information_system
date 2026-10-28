@@ -1,0 +1,663 @@
+/* =====================================================================
+   ROOT VARIABLES & RESET
+   ===================================================================== */
+:root {
+  --primary-dark: #0b192c;
+  --primary-blue: #1e50e2;
+  --primary-blue-hover: #1b47c8;
+  --primary-light: #e0e7ff;
+  --bg-main: #f4f6f9;
+  --card-bg: #ffffff;
+  --text-main: #334155;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --accent-gold: #ffcc00;
+  --danger-color: #ef4444;
+  --danger-hover: #dc2626;
+  --success-color: #10b981;
+  --success-hover: #059669;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.04);
+  --shadow-hover: 0 10px 25px rgba(11, 25, 44, 0.08);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  min-height: 100vh;
+  /* Follows the real viewport on iPhone, where the toolbar resizes. */
+  min-height: 100dvh;
+  overflow-x: hidden;
+  animation: smoothPageFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) ease-out;
+}
+
+@keyframes smoothPageFade {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* =====================================================================
+   TIER 1: DARK TOP BRANDING BAR
+   ===================================================================== */
+.top-header-brand {
+  background-color: var(--primary-dark);
+  padding: 10px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  position: relative;
+  z-index: 10;
+}
+
+.brand-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-logo {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.brand-logo:hover {
+  transform: scale(1.05);
+}
+
+.brand-name {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.header-right-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.profile-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  transition: background-color 0.2s ease;
+}
+
+.profile-box:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.user-name {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.user-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-blue);
+  flex-shrink: 0;
+  transition: border-color 0.2s ease;
+}
+
+.profile-box:hover .user-avatar {
+  border-color: #ffffff;
+}
+
+.user-avatar img,
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* =====================================================================
+   BUTTON STYLES & INTERACTION ANIMATIONS
+   ===================================================================== */
+button, 
+.btn-save-profile, 
+.btn-back-dashboard,
+.btn-change-photo {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+button:active, 
+.btn-save-profile:active, 
+.btn-back-dashboard:active {
+  transform: scale(0.97) !important;
+}
+
+#btnLogout {
+  background-color: var(--danger-color) !important;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+#btnLogout:hover {
+  background-color: var(--danger-hover) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.btn-back-dashboard {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #ffffff;
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.btn-back-dashboard:hover {
+  background-color: var(--primary-blue);
+  color: #ffffff;
+  border-color: var(--primary-blue);
+  transform: translateX(-3px);
+  box-shadow: 0 4px 12px rgba(30, 80, 226, 0.2);
+}
+
+/* =====================================================================
+   MAIN BODY & PAGE TITLE
+   ===================================================================== */
+.main-body {
+  width: 90%;
+  max-width: 1100px;
+  margin: 32px auto;
+  padding: 0 16px;
+}
+
+.page-title-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.category-label {
+  color: var(--primary-blue);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.page-heading {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--primary-dark);
+  letter-spacing: -0.5px;
+}
+
+/* =====================================================================
+   PROFILE CONTAINER & CARDS LAYOUT
+   ===================================================================== */
+.profile-container {
+  display: grid;
+  grid-template-columns: 290px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Base Card Styling with Entrance Animations */
+.profile-card,
+.profile-form-card {
+  background-color: var(--card-bg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-subtle);
+  padding: 28px;
+  animation: fluidSlideUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) ease-out forwards;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.profile-card:hover,
+.profile-form-card:hover {
+  transform: translate3d(0, -3px, 0);
+  box-shadow: var(--shadow-hover);
+}
+
+/* LEFT COLUMN: AVATAR CARD */
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.avatar-upload-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.big-avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background-color: var(--primary-blue);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  border: 4px solid var(--primary-light);
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(30, 80, 226, 0.2);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.big-avatar:hover {
+  transform: scale(1.03);
+  border-color: var(--primary-blue);
+}
+
+.big-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.btn-change-photo {
+  background-color: #f1f5f9;
+  color: var(--primary-blue);
+  border: 1px solid var(--border-color);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-change-photo:hover {
+  background-color: var(--primary-blue);
+  color: #ffffff;
+  border-color: var(--primary-blue);
+  box-shadow: 0 4px 10px rgba(30, 80, 226, 0.25);
+}
+
+.profile-card h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-bottom: 4px;
+}
+
+.prof-role {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.badge-subject {
+  display: inline-block;
+  background-color: var(--primary-light);
+  color: var(--primary-blue);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 20px;
+  letter-spacing: 0.3px;
+}
+
+/* RIGHT COLUMN: ACCOUNT & SECURITY FORMS */
+.profile-form-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-form-card h3 i {
+  color: var(--primary-blue);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+  width: 100%;
+  padding: 11px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  color: var(--text-main);
+  outline: none;
+  background-color: #f8fafc;
+  transition: all 0.2s ease;
+}
+
+.password-field {
+  position: relative;
+}
+
+.password-field input {
+  padding-right: 68px !important;
+}
+
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 9px;
+  transform: translateY(-50%);
+  border: 0;
+  background: transparent;
+  color: var(--primary-blue);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.password-toggle:hover { text-decoration: underline; }
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.profile-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.btn-save-profile {
+  background-color: var(--primary-blue);
+  color: #ffffff;
+  border: none;
+  padding: 11px 24px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(30, 80, 226, 0.2);
+}
+
+.btn-save-profile:hover {
+  background-color: var(--primary-blue-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(30, 80, 226, 0.3);
+}
+
+/* Security Settings Specific Styling */
+#sendOtpBtn {
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(30, 80, 226, 0.15);
+}
+
+#sendOtpBtn:hover {
+  background-color: var(--primary-blue-hover) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(30, 80, 226, 0.25);
+}
+
+#step-2 button[type="submit"] {
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+#step-2 button[type="submit"]:hover {
+  background-color: var(--success-hover) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3);
+}
+
+/* Keyframe Animations */
+@keyframes fluidSlideUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Responsive Rules */
+@media screen and (max-width: 850px) {
+  .profile-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .profile-card {
+    flex: 1 1 auto !important;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .main-body {
+    padding: 0 16px;
+    margin: 20px auto;
+  }
+}
+
+/* Toast Notification System */
+#toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.custom-toast {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 280px;
+  padding: 14px 18px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #334155;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.custom-toast.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.custom-toast i {
+  font-size: 18px;
+}
+
+/* Toast Variants
+   Each one colours its own icon, so the message says what it is without
+   needing a coloured edge on the box. */
+.toast-success i {
+  color: #10b981;
+}
+
+.toast-error i {
+  color: #ef4444;
+}
+
+.toast-info i {
+  color: #1e50e2;
+}
+
+/* Custom Logout Modal Overlay */
+.custom-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.65);
+  /* iOS Safari only honours the prefixed version. */
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.custom-modal-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Modal Box */
+.custom-modal-card {
+  background-color: #111827;
+  border: 1px solid #1f2937;
+  border-radius: 12px;
+  padding: 24px 28px;
+  width: 90%;
+  max-width: 380px;
+  text-align: center;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transform: scale(0.95);
+  transition: transform 0.25s ease;
+}
+
+.custom-modal-overlay.show .custom-modal-card {
+  transform: scale(1);
+}
+
+.modal-icon {
+  font-size: 28px;
+  color: #ef4444;
+  margin-bottom: 12px;
+}
+
+.custom-modal-card h3 {
+  margin: 0 0 8px 0;
+  color: #f3f4f6;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.custom-modal-card p {
+  margin: 0 0 20px 0;
+  color: #9ca3af;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* Action Buttons */
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.modal-actions button {
+  flex: 1;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.btn-cancel {
+  background-color: #374151;
+  color: #e5e7eb;
+}
+
+.btn-cancel:hover {
+  background-color: #4b5563;
+}
+
+.btn-confirm {
+  background-color: #dc2626;
+  color: #ffffff;
+}
+
+.btn-confirm:hover {
+  background-color: #b91c1c;
+}
+/* Pointer over a field
+   The outline darkens a little, which is the only thing that changes. It tells
+   you the box under the pointer is one you can type in. */
+.form-group input:hover,
+.form-group select:hover {
+  border-color: #94a3b8;
+}
+
+/* INPUT_HOVER_SENTINEL */

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account - Admin</title>
+  <link rel="stylesheet" href="dashboard design.css?v=202610120227">
+  <link rel="stylesheet" href="create_account.css?v=202610120217">
+</head>
+
+<body>
+  <header class="top-header-brand">
+    <div class="brand-box">
+      <img src="/Profile%20pic_part/Arellano_University_New_Logo.png?v=202609280110" alt="Arellano logo" class="brand-logo">
+      <span class="brand-name">Arellano University</span>
+    </div>
+    <div class="profile-box" onclick="navigateToProfile()" title="View Profile">
+      <span class="user-name">User</span>
+      <div class="user-avatar"></div>
+    </div>
+  </header>
+
+  <nav class="top-header-nav">
+    <div class="nav-links">
+      <a href="/Dashboard fol/Dashboard section.html?v=202610102332" class="nav-item">Dashboard</a>
+      <a href="/View students fol/View students.html?v=202610102332" class="nav-item">View Students</a>
+      <a href="/Add students fol/Add students.html?v=202610102334" class="nav-item">Add Student</a>
+      <a href="/schedule fol/schedule.html?v=202610102332" class="nav-item">Create Schedule</a>
+      <a href="/View schedule/View schedule.html?v=202610102332" class="nav-item">View Schedule</a>
+      <a href="create_account.html?v=202610102332" class="nav-item active">Create Account</a>
+      <a href="manage_users.html?v=202610102332" class="nav-item">Manage Users</a>
+      <a href="manage_professors.html?v=202610102332" class="nav-item">Manage Professors</a>
+      <a href="/About fol/about.html?v=202610102334" class="nav-item">About</a>
+    </div>
+  </nav>
+
+  <main class="account-page">
+    <p class="category-label">ADMIN PANEL</p>
+    <h1>Create Student, Professor, or Admin Account</h1>
+    <p>Create access only after confirming that the student is assigned to a BSIT class list or the professor is an active BSIT faculty member.</p>
+    <p class="account-note"><strong>Student rule:</strong> A student account cannot be created until that student appears in at least one class list. The server checks this rule again when the form is submitted.</p>
+    <p class="account-note"><strong>Admin rule:</strong> An admin account is created directly by an admin, so it is not linked to a class list. Only an admin can create another admin account.</p>
+
+    <form id="accountForm" class="account-card" novalidate>
+      <div class="account-form-grid">
+        <label>
+          Account Type
+          <select id="accountType">
+            <option value="student">Student</option>
+            <option value="teacher">Professor</option>
+            <option value="admin">Admin</option>
+          </select>
+        </label>
+
+        <label id="accountNumberLabel">
+          <span id="accountNumberText">Student Number</span>
+          <input id="accountNumber" list="eligibleStudentNumbers" aria-describedby="accountNumberHint" required placeholder="e.g. 26-00123" autocomplete="off">
+          <datalist id="eligibleStudentNumbers"></datalist>
+          <small id="accountNumberHint" class="account-field-hint" aria-live="polite">Choose a student number that is already assigned to a class list.</small>
+        </label>
+
+        <label>
+          Username
+          <input id="username" required autocomplete="username" placeholder="Login username">
+        </label>
+
+        <label>
+          Email Address
+          <input id="email" type="email" required autocomplete="email" placeholder="name@example.com">
+        </label>
+
+        <label id="teacherNameLabel" class="account-teacher-name" hidden>
+          <span id="fullNameText">Professor Full Name</span>
+          <input id="teacherFullName" autocomplete="name" placeholder="e.g. Prof. Maria Santos">
+        </label>
+
+        <label class="account-password-label">
+          Password
+          <div class="password-field">
+            <input id="password" type="password" required minlength="8" autocomplete="new-password" placeholder="At least 8 characters">
+            <button type="button" id="showPassword">Show</button>
+          </div>
+          <small class="account-field-hint">Use at least 8 characters. The password is stored securely as a hash.</small>
+        </label>
+      </div>
+
+      <p id="accountMessage" aria-live="polite"></p>
+      <div class="account-form-actions">
+        <a class="account-secondary-action" href="manage_users.html?v=202610102332">Manage existing users</a>
+        <button id="createAccountButton" type="submit">Create Account</button>
+      </div>
+    </form>
+  </main>
+
+  <script src="/auth-client.js?v=202610012123"></script>
+  <script src="create_account.js?v=202609280105"></script>
+  <script src="/Profile pic_part/Profile.js?v=202609261659"></script>
+</body>
+
+</html>

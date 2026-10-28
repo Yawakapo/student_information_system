@@ -1,0 +1,329 @@
+/* Base Screen Setting Properties */
+body {
+    background: linear-gradient(rgba(1, 20, 47, 0.85), rgba(1, 20, 47, 0.85)), 
+    url('/Profile%20pic_part/au-pasig-sm.jpg') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex;
+    /* 100dvh follows the real viewport on iPhone, where the browser toolbar
+       changes height. The 100vh line stays as the fallback for older browsers. */
+    min-height: 100vh;
+    min-height: 100dvh;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+}
+
+/* Master Grid Structure - Aligns layout splits side-by-side */
+.split-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    width: 100%;
+    max-width: 900px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* -------------------------------------------------------------
+   There is no motion on this page. The logo, the title and the
+   form are drawn where they belong and stay there.
+
+   What was removed, and why it was not needed:
+     - the preloader that covered the page with a spinning ring and a pulsing
+       logo. The page was already usable underneath it, and the script held it
+       up for 300ms and then faded it for 600ms, so it only made the login
+       feel slower.
+     - the logo floating up and down for ever while the pointer rested on it.
+       It never stopped, so it was movement with nothing behind it.
+     - both panels fading and sliding up as the page opened.
+   ------------------------------------------------------------- */
+
+/* Left Panel Styles */
+.brand-side {
+    text-align: center;
+    flex: 1;
+}
+
+.sis-logo-img { 
+    width: 300px; 
+    height: 300px; 
+    object-fit: contain;
+    margin: 0 auto 15px; 
+    display: block;
+    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.4));
+}
+
+
+
+.sis-title { 
+    margin: 0; 
+    font-size: 2.5rem; 
+    color: #fff;
+    text-transform: uppercase; 
+    letter-spacing: 2px;
+}
+
+.sis-sub { 
+    margin: 6px 0 0; 
+    font-size: 1.05rem; 
+    color: #8fa0ba; 
+    letter-spacing: 0.5px;
+}
+
+/* Right Panel System Card Styles */
+.form-side {
+    flex: 1;
+    max-width: 380px;
+    width: 100%;
+}
+
+.sis-box { 
+    background: #e2e8f0; /* Light slate, dark enough to sit calmly on the photo */
+    color: #1e293b; 
+    padding: 35px 25px; 
+    border-radius: 12px; 
+    border: 1px solid #cbd5e1; 
+    box-shadow: 0 10px 30px rgba(0,0,0,.45); 
+    box-sizing: border-box; 
+}
+
+.f-group { 
+    margin-bottom: 18px; 
+    text-align: left; 
+}
+
+.f-group label { 
+    display: block; 
+    margin-bottom: 6px; 
+    font-size: .85rem; 
+    color: #334155; 
+    font-weight: 600; 
+}
+
+.f-in { 
+    width: 100%; 
+    padding: 11px; 
+    background: #fff; 
+    border: 2px solid #94a3b8; 
+    border-radius: 6px; 
+    color: #333; 
+    box-sizing: border-box; 
+    font-size: 0.95rem;
+}
+
+.f-btn { 
+    width: 100%; 
+    padding: 11px; 
+    background: #004085; 
+    border: 1px solid #fff; 
+    border-radius: 6px; 
+    color: #fff; 
+    font-weight: 600; 
+    cursor: pointer; 
+    margin-top: 10px; 
+    font-size: 0.95rem;
+}
+
+.f-btn:active {
+    transform: translateY(1px);
+    box-shadow: none;
+}
+
+.f-lnk { 
+    font-size: .8rem; 
+    color: #1d4ed8; 
+    cursor: pointer; 
+    text-decoration: none; 
+    display: inline-block; 
+    margin-top: 12px; 
+}
+
+/* Password positioning overlay parameters */
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-wrapper .f-in {
+    padding-right: 118px;
+}
+
+.show-password-btn {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    padding: 5px 7px;
+    background: #ffffff;
+    color: #0f172a;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.eye-btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    user-select: none;
+}
+
+.eye-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.eye-btn i {
+    color: #64748b;
+    font-size: 1rem;
+}
+
+/* Slide-In Custom Alerts styling setups */
+#toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 14px 24px;
+    border-radius: 8px;
+    color: #fff;
+    font-family: sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    z-index: 1000;
+}
+
+.toast-hidden {
+    transform: translateX(120%);
+    opacity: 0;
+}
+
+.toast-visible {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.toast-success {
+    background-color: #1b5e20;
+}
+
+.toast-error {
+    background-color: #7f1d1d;
+}
+
+/* Screen Size Adaptive Fallback Breakpoints for Mobile Panels */
+@media (max-width: 768px) {
+    .split-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .sis-logo-img {
+        width: 220px;
+        height: 220px;
+    }
+}
+
+@media (max-width: 420px) {
+    .sis-logo-img {
+        width: 160px;
+        height: 160px;
+        margin-bottom: 10px;
+    }
+
+    .sis-title {
+        font-size: 1.7rem;
+        letter-spacing: 1px;
+    }
+
+    .sis-sub {
+        font-size: 0.9rem;
+    }
+
+    .sis-box {
+        padding: 24px 18px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Spinning Ring around or under logo */
+
+
+
+
+
+
+/* =============================================================
+   LOGIN MESSAGE
+   Shown on the form itself rather than as a banner in the corner,
+   so the result of pressing Log-in is read where the eye already is.
+   ============================================================= */
+.login-message {
+    margin: 0 0 14px;
+    padding: 11px 13px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-size: 13.5px;
+    font-weight: 600;
+    line-height: 1.45;
+    text-align: left;
+}
+
+.login-message[hidden] { display: none !important; }
+
+.login-message.success {
+    border-color: #15803d;
+    background: #f0fdf4;
+    color: #14532d;
+}
+
+.login-message.error {
+    border-color: #fecaca;
+    background: #fef2f2;
+    color: #991b1b;
+}
+
+/* While the button is working the message holds its place, so the card does
+   not jump about as things appear and disappear. */
+.login-message.working {
+    border-color: #cbd5e1;
+    background: #eff6ff;
+    color: #1e3a8a;
+}
+
+/* Pointer over a field
+   The outline darkens a little, which is the only thing that changes. It tells
+   you the box under the pointer is one you can type in. */
+.f-in:hover {
+  border-color: #94a3b8;
+}
+
+/* INPUT_HOVER_SENTINEL */

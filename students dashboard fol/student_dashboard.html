@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal - Dashboard</title>
+    <link rel="stylesheet" href="../Dashboard fol/dashboard design.css?v=202610120227">
+    <link rel="stylesheet" href="student_dashboard.css?v=202609261743">
+    <!-- Shared form CSS from your Add students folder -->
+    <link rel="stylesheet" href="../Add students fol/Add students design.css?v=202609242234">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <div class="navbar">
+        <div class="nav-brand">
+            <img src="/Profile%20pic_part/Arellano_University_New_Logo.png?v=202609280110" alt="Logo">
+            <span>Arellano University | Student Portal</span>
+        </div>
+        <div class="nav-links">
+            <a href="/Profile pic_part/Profile section.html?v=202610102334" class="nav-link profile-link">Profile</a>
+            <a href="#" id="logoutBtn" class="nav-link-logout">Logout</a>
+        </div>
+    </div>
+
+    <div class="dashboard-container">
+        <h2 class="dashboard-header">Welcome, <span id="studentIdText">Student</span>!</h2>
+        <p class="dashboard-subtitle">Here is your student portal overview.</p>
+
+        <div class="card-grid">
+            <div class="dashboard-card">
+                <h3 class="card-title">My Class Schedule</h3>
+                <p class="card-desc">View your enrolled subjects, rooms, and meeting times.</p>
+                <a href="student_sched.html?v=202610102332" class="btn-card green">View Schedule</a>
+            </div>
+
+            <div class="dashboard-card">
+                <h3 class="card-title">About System</h3>
+                <p class="card-desc">Check system support channels, campus directories, and details.</p>
+                <a href="../students dashboard fol/about_students.html?v=202610102334" class="btn-card dark">View About</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="/auth-client.js?v=202610012123"></script>
+    <script src="student_dashboard.js?v=202610012107"></script>
+</body>
+</html>

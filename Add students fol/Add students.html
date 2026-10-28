@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Information System - Add Student</title>
+  <link rel="stylesheet" href="/Dashboard fol/dashboard design.css?v=202610120227">
+  <link rel="stylesheet" href="/View students fol/Studentspart stylesheet.css?v=202610120217">
+  <link rel="stylesheet" href="/Add students fol/Add students design.css?v=202609242234">
+  <link rel="stylesheet" href="/Profile pic_part/profile_design.css?v=202610120227">
+  <link rel="stylesheet" href="/schedule fol/schedule design.css?v=202609262025">
+</head>
+<body>
+
+  <div class="app-container">
+
+    <!-- TIER 1: DARK TOP BRANDING BAR -->
+    <header class="top-header-brand">
+      <div class="brand-box">
+        <img src="/Profile%20pic_part/Arellano_University_New_Logo.png?v=202609280110" alt="Arellano Logo" class="brand-logo">
+        <span class="brand-name">Arellano University</span>
+      </div>
+
+      <div class="profile-box" onclick="navigateToProfile()" title="View Profile" style="cursor: pointer;">
+        <span class="user-name"></span>
+        <div class="user-avatar"></div>
+      </div>
+    </header>
+
+    <!-- TIER 2: BLUE HORIZONTAL NAV BAR -->
+    <nav class="top-header-nav">
+      <div class="nav-links">
+        <a href="/Dashboard fol/Dashboard section.html?v=202610102332" class="nav-item">
+          <i class="fa-solid fa-border-all"></i> Dashboard
+        </a>
+        <a href="/View students fol/View students.html?v=202610102332" class="nav-item">
+          <i class="fa-solid fa-users"></i> View Students
+        </a>
+        <a href="/Add students fol/Add students.html?v=202610102332" class="nav-item active">
+          <i class="fa-solid fa-user-plus"></i> Add Student
+        </a>
+        <a href="/schedule fol/schedule.html?v=202610102332" class="nav-item">
+          <i class="fa-solid fa-calendar-plus"></i> Create Schedule
+        </a>
+        <a href="/View schedule/View schedule.html?v=202610102332" class="nav-item">
+          <i class="fa-solid fa-bullhorn"></i> View Schedule
+        </a>
+        
+        <a href="/Dashboard fol/create_account.html?v=202610102332" class="nav-item">
+          <i class="fa-solid fa-user-plus"></i> Create Account
+        </a>
+        <a href="/Dashboard fol/manage_users.html?v=202610102332" class="nav-item">
+          <i class="fa-solid fa-user-gear"></i> Manage Users
+        </a>
+        <a href="/Dashboard fol/manage_professors.html?v=202610102332" class="nav-item">
+          <i class="fa-solid fa-user-tie"></i> Manage Professors
+        </a>
+
+        <a href="/About fol/about.html?v=202610102334" class="nav-item">
+          <i class="fa-solid fa-circle-info"></i> About
+        </a>
+      </div>
+    </nav>
+
+    <!-- MAIN WORKSPACE AREA -->
+    <main class="main-body">
+      <div class="dashboard-content">
+
+        <!-- PAGE TITLE HEADER -->
+        <section class="page-title-section">
+          <div class="title-text">
+            <span class="category-label">STUDENT MANAGEMENT</span>
+            <h1 class="page-heading">Add Student</h1>
+          </div>
+        </section>
+
+        <!-- FORM CARD CONTAINER -->
+        <div class="form-card">
+          <!-- REMOVED THE ICON DIV HERE -->
+          <div class="form-card-header">
+            <div>
+              <h2>Student Registration Form</h2>
+              <p>Enter the BSIT student details and assign the student to one or more professors' schedules.</p>
+            </div>
+          </div>
+
+          <!-- DYNAMIC NOTIFICATION BANNERS -->
+          <div id="successMessage" class="alert-banner alert-success" style="display: none;"></div>
+          <div id="errorMessage" class="alert-banner alert-error" style="display: none;"></div>
+
+          <div class="import-panel">
+            <div class="import-panel-header">
+              <div>
+                <h2>Import Students</h2>
+                <p>Upload an Excel or CSV file using the student details. Professor and schedule columns are optional; separate multiple schedule IDs or labels with a semicolon (;). To apply the professors and schedules selected below to the imported students, click the import button.</p>
+              </div>
+            </div>
+            <div class="import-controls">
+              <input type="file" id="studentImportFile" accept=".xlsx,.xls,.csv">
+              <button type="button" id="importStudentsButton" class="btn-import" disabled>Import Students</button>
+            </div>
+            <p id="importMessage" class="import-message" aria-live="polite"></p>
+            <div id="importPreview" class="import-preview" hidden></div>
+          </div>
+
+          <!-- Form submission will be handled by Addstudents.js -->
+          <form id="addStudentForm" novalidate>
+            
+            <!-- Row 1: Student number. The program is fixed to BSIT. -->
+            <div class="form-row">
+              <div class="form-group form-group-wide">
+                <label for="student_no">Student No.</label>
+                <input type="text" id="student_no" name="student_no" placeholder="e.g. 26-00XXX" required>
+              </div>
+            </div>
+
+            <!-- Row 2: First Name & Last Name -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="first_name">First Name</label>
+                <input type="text" id="first_name" name="first_name" placeholder="Enter first name" required>
+              </div>
+
+              <div class="form-group">
+                <label for="last_name">Last Name</label>
+                <input type="text" id="last_name" name="last_name" placeholder="Enter last name" required>
+              </div>
+            </div>
+
+            <!-- Row 3: Professor and schedule assignments -->
+            <div class="form-row assignment-row">
+              <div class="form-group">
+                <label>Professors</label>
+                <div id="professorOptions" class="multi-select-panel" role="group" aria-label="Professors">
+                  <p class="multi-select-empty">Loading professors...</p>
+                </div>
+                <small class="form-help">Select one or more professors.</small>
+              </div>
+
+              <div class="form-group">
+                <label>Professors' Schedules</label>
+                <div id="scheduleOptions" class="multi-select-panel" role="group" aria-label="Professors' schedules">
+                  <p class="multi-select-empty">Select a professor first</p>
+                </div>
+                <small id="scheduleHelp" class="form-help">Select one or more schedules.</small>
+              </div>
+            </div>
+
+            <!-- Row 4: Year Level & Gender -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="year_level">Year</label>
+                <select id="year_level" name="year_level" required>
+                  <option value="" disabled selected>Select Year</option>
+                  <option value="1st Year">1st Year</option>
+                  <option value="2nd Year">2nd Year</option>
+                  <option value="3rd Year">3rd Year</option>
+                  <option value="4th Year">4th Year</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender" required>
+                  <option value="" disabled selected>Select Gender</option>
+                  <option value="Female">Female</option>
+                  <option value="Male">Male</option>
+                  <option value="Non-binary">Non-binary</option>
+                  <option value="Prefer not to say">Prefer not to say</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Row 5: Birthday & Address -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="birthday">Birthday</label>
+                <input type="date" id="birthday" name="birthday" required>
+              </div>
+
+              <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" placeholder="Enter address" required>
+              </div>
+            </div>
+
+            <!-- Row 6: Contact Number & Emergency Contact -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contact_number">Number</label>
+                <input type="tel" id="contact_number" name="contact_number" placeholder="Enter contact number" required>
+              </div>
+
+              <div class="form-group">
+                <label for="emergency_contact_number">Emergency Contact No.</label>
+                <input type="tel" id="emergency_contact_number" name="emergency_contact_number" placeholder="Enter emergency contact number" required>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="form-actions">
+              <button type="reset" class="btn-clear">Clear</button>
+              <button type="submit" id="addStudentSubmitButton" class="btn-submit">Add Student</button>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </main>
+  </div>
+    <script src="/auth-client.js?v=202610012123"></script>
+  <script src="/socket.io/socket.io.min.js"></script>
+  <script src="/vendor/xlsx.full.min.js"></script>
+  <script src="/Add students fol/Addstudents.js?v=202609280105"></script>
+  <script src="/Profile pic_part/Profile.js?v=202609261659"></script>
+</body>
+</html>

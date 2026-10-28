@@ -1,0 +1,318 @@
+.professor-form-card {
+  margin-bottom: 22px;
+}
+
+.professor-form-heading,
+.professor-form-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.professor-form-heading h2 {
+  margin: 0 0 5px;
+  color: #0b192c;
+  font-size: 20px;
+}
+
+.professor-form-heading p,
+.professor-account-heading p {
+  margin: 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.professor-form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.professor-form-grid label {
+  display: grid;
+  gap: 6px;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.professor-form-grid input {
+  width: 100%;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #f8fafc;
+  color: #0f172a;
+  font: inherit;
+  font-size: 14px;
+}
+
+.professor-account-heading {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.professor-account-heading h3 {
+  margin: 0 0 4px;
+  color: #1e3a8a;
+  font-size: 15px;
+}
+
+.professor-form-actions {
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.professor-toolbar {
+  grid-template-columns: minmax(260px, 1fr) 190px auto;
+}
+
+.professor-table {
+  min-width: 920px;
+}
+
+.professor-table td {
+  vertical-align: middle;
+}
+
+.professor-name {
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.professor-meta {
+  display: block;
+  margin-top: 3px;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.professor-delete-button {
+  border: 0;
+  border-radius: 6px;
+  padding: 7px 10px;
+  background: #fee2e2;
+  color: #991b1b;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.professor-delete-button:hover {
+  background: #fecaca;
+}
+
+@media screen and (max-width: 900px) {
+  .professor-form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .professor-toolbar {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .professor-toolbar .manage-search {
+    grid-column: 1 / -1;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .professor-form-heading,
+  .professor-form-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .professor-form-heading .btn-secondary,
+  .professor-form-actions .btn-secondary,
+  .professor-form-actions .btn-primary {
+    width: 100%;
+  }
+
+  .professor-form-grid,
+  .professor-toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .professor-toolbar .manage-search {
+    grid-column: auto;
+  }
+}
+
+/* =============================================================
+   REMOVE PROFESSOR DIALOG
+   Lets the admin hand a professor's classes to a replacement
+   instead of deleting them and stripping the students.
+   ============================================================= */
+.replace-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(11, 25, 44, .55);
+}
+
+.replace-modal[hidden] { display: none !important; }
+
+.replace-modal-card {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    padding: 28px 26px 24px;
+    border-radius: 14px;
+    background: #ffffff;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, .35);
+    box-sizing: border-box;
+}
+
+.replace-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    width: 32px;
+    height: 32px;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: #64748b;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.replace-modal-close:hover { background: #f1f5f9; color: #0f172a; }
+
+.replace-modal-eyebrow {
+    margin: 0 0 4px;
+    color: #b42318;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .06em;
+}
+
+.replace-modal-title {
+    margin: 0 0 8px;
+    color: #0b192c;
+    font-size: 22px;
+}
+
+.replace-modal-text {
+    margin: 0 0 18px;
+    color: #475569;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.replace-modal-field {
+    display: grid;
+    gap: 6px;
+    margin-bottom: 16px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #334155;
+}
+
+.replace-modal-field select {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid #94a3b8;
+    border-radius: 8px;
+    background: #f8fafc;
+    color: #0f172a;
+    font: inherit;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.replace-modal-hint { color: #64748b; font-size: 12px; font-weight: 500; line-height: 1.4; }
+
+.replace-modal-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 14px;
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background: #f8fafc;
+    color: #334155;
+    font-size: 13px;
+    line-height: 1.4;
+    cursor: pointer;
+}
+
+.replace-modal-check input { margin-top: 2px; flex: 0 0 auto; }
+
+.replace-modal-warning {
+    margin: 0 0 4px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    background: #fef2f2;
+    color: #b42318;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.45;
+}
+
+.replace-modal-warning[hidden] { display: none !important; }
+
+.replace-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.replace-btn-cancel,
+.replace-btn-confirm {
+    flex: 0 0 auto;
+    padding: 11px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.replace-btn-cancel {
+    border: 1px solid #cbd5e1;
+    background: #fff;
+    color: #334155;
+}
+
+.replace-btn-cancel:hover { background: #f1f5f9; }
+
+.replace-btn-confirm {
+    border: 1px solid #b42318;
+    background: #dc2626;
+    color: #ffffff;
+}
+
+.replace-btn-confirm:hover { background: #b42318; }
+
+@media screen and (max-width: 600px) {
+    .replace-modal-card { padding: 24px 18px 20px; }
+    .replace-modal-actions { flex-direction: column-reverse; }
+    .replace-btn-cancel,
+    .replace-btn-confirm { width: 100%; }
+}
+
+/* Pointer over a field
+   The outline darkens a little, which is the only thing that changes. It tells
+   you the box under the pointer is one you can type in. */
+.professor-form-grid input:hover,
+.professor-form-grid select:hover {
+  border-color: #94a3b8;
+}
+
+/* INPUT_HOVER_SENTINEL */

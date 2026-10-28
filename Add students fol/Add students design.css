@@ -1,0 +1,444 @@
+
+.form-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 28px 32px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.form-card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.form-card-header h2 {
+  font-size: 18px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+}
+
+.form-card-header p {
+  font-size: 13px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+#addStudentForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.form-group-wide {
+  grid-column: 1 / -1;
+}
+
+.assignment-row > .form-group {
+  min-width: 0;
+}
+
+.form-help {
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #1e293b;
+  outline: none;
+  background-color: #f8fafc;
+  transition: 
+    border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.2s ease;
+}
+
+.form-group input::placeholder {
+  color: #94a3b8;
+}
+
+.form-group select:disabled {
+  color: #64748b;
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+.form-group select[multiple] {
+  height: 104px;
+  min-height: 104px;
+  max-height: 150px;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.form-group select[multiple] option {
+  padding: 6px 8px;
+  border-radius: 4px;
+}
+
+.multi-select-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 104px;
+  max-height: 170px;
+  overflow-y: auto;
+  padding: 7px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.multi-select-option {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 8px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: #1e293b;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.multi-select-option:hover {
+  border-color: #bfdbfe;
+  background: #eff6ff;
+}
+
+.multi-select-option:has(input:checked) {
+  border-color: #93c5fd;
+  background: #dbeafe;
+}
+
+.multi-select-option input[type="checkbox"] {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: #1d4ed8;
+}
+
+.multi-select-option span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.multi-select-option strong {
+  overflow-wrap: anywhere;
+}
+
+.multi-select-option small {
+  color: #64748b;
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+
+.multi-select-empty {
+  margin: auto;
+  padding: 12px 6px;
+  color: #64748b;
+  font-size: 12px;
+  text-align: center;
+}
+
+.import-panel {
+  padding: 18px;
+  border: 1px dashed #93c5fd;
+  border-radius: 10px;
+  background: #f8fbff;
+}
+
+.import-panel-header,
+.import-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.import-panel-header h2 { color: #0f172a; font-size: 18px; }
+.import-panel-header p { margin-top: 4px; color: #64748b; font-size: 13px; }
+.import-controls { justify-content: flex-start; margin-top: 16px; }
+.import-controls input[type="file"] { flex: 1; min-width: 0; }
+.btn-secondary,
+.btn-import {
+  border: 0;
+  border-radius: 7px;
+  padding: 10px 14px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.btn-secondary { background: #e2e8f0; color: #334155; }
+.btn-import { background: #047857; color: #ffffff; }
+.btn-import:disabled { background: #cbd5e1; color: #64748b; cursor: not-allowed; }
+.import-message { min-height: 20px; margin-top: 10px; color: #166534; font-size: 13px; font-weight: 600; }
+.import-message.error { color: #b91c1c; }
+.import-preview { max-height: 220px; margin-top: 12px; overflow: auto; border: 1px solid #e2e8f0; border-radius: 8px; background: #ffffff; }
+.import-preview table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.import-preview th,
+.import-preview td { padding: 8px 10px; border-bottom: 1px solid #eef2f7; text-align: left; white-space: nowrap; }
+.import-preview th { background: #0b1329; color: #ffffff; }
+
+
+.time-input-group {
+  display: flex;
+  gap: 8px;
+}
+
+.time-input-group input {
+  flex: 1;
+}
+
+.time-input-group select {
+  width: auto;
+  min-width: 80px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.btn-submit,
+.btn-clear,
+.delete-btn {
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  will-change: transform;
+  transition: 
+    background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-clear {
+  padding: 10px 20px;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+}
+
+.btn-clear:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+  transform: translate3d(0, -1px, 0);
+}
+
+.btn-submit {
+  padding: 10px 24px;
+  background-color: #1d4ed8;
+  border: none;
+  color: #ffffff;
+}
+
+.btn-submit:hover {
+  background-color: #1b47c8;
+  transform: translate3d(0, -2px, 0);
+  box-shadow: 0 6px 16px rgba(30, 80, 226, 0.25);
+}
+
+.delete-btn:hover {
+  background-color: #dc2626;
+  transform: translate3d(0, -2px, 0);
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.25);
+}
+
+.btn-submit:active,
+.btn-clear:active,
+.delete-btn:active {
+  transform: translate3d(0, 0, 0) scale(0.97) !important;
+  box-shadow: none;
+}
+
+.alert-banner {
+  display: none; /* Controlled via JS */
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  align-items: center;
+  gap: 10px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.alert-success {
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #15803d;
+}
+
+.alert-error {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+}
+
+.nav-item {
+  transition: 
+    background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform;
+}
+
+.nav-item:hover {
+  transform: translate3d(0, -2px, 0);
+}
+
+.nav-item:active {
+  transform: translate3d(0, 0, 0) scale(0.97);
+}
+
+.schedule-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.schedule-table tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+.schedule-table tr.deleting {
+  animation: smoothRowSlide 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.progress-fill {
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.course-card-item {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stat-card:hover,
+.course-card-item:hover {
+  transform: translate3d(0, -3px, 0);
+  box-shadow: 0 10px 24px rgba(11, 25, 44, 0.08);
+}
+
+body {
+  animation: smoothPageFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) ease-out;
+}
+
+.stat-card,
+.form-card,
+.courses-section,
+.table-container {
+  animation: fluidSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) ease-out;
+  transition: 
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, box-shadow;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes smoothPageFade {
+  from {
+    transform: translate3d(0, 6px, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fluidSlideUp {
+  from {
+    transform: translate3d(0, 12px, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes smoothRowSlide {
+  to {
+    opacity: 0;
+    transform: translate3d(16px, 0, 0);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .import-panel-header,
+  .import-controls {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .import-controls input[type="file"] { width: 100%; }
+  .btn-secondary,
+  .btn-import { width: 100%; }
+}
+
+@media screen and (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .form-card {
+    padding: 20px;
+  }
+}
+/* Pointer over a field
+   The outline darkens a little, which is the only thing that changes. It tells
+   you the box under the pointer is one you can type in. */
+.form-group input:hover,
+.form-group select:hover {
+  border-color: #94a3b8;
+}
+
+/* INPUT_HOVER_SENTINEL */

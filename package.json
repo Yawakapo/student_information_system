@@ -1,0 +1,25 @@
+{
+  "name": "student-information-system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "node --watch server/server.js",
+    "db:migrate": "node server/scripts/migrate.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mysql2": "^3.24.2",
+    "nodemailer": "^10.0.10",
+    "socket.io": "^4.8.3",
+    "xlsx": "^0.18.5"
+  }
+}

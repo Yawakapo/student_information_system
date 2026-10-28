@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Information System - View Students</title>
+  <!-- Empty icon stops the browser requesting a favicon that does not exist. -->
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/Dashboard fol/dashboard design.css?v=202610120227">
+  <link rel="stylesheet" href="/View students fol/Studentspart stylesheet.css?v=202610141200">
+  <link rel="stylesheet" href="/Add students fol/Add students design.css?v=202609242234">
+  <link rel="stylesheet" href="/schedule fol/schedule design.css?v=202609262025">
+</head>
+<body>
+
+  <div class="app-container">
+
+    <!-- TIER 1: DARK TOP BRANDING BAR -->
+    <header class="top-header-brand">
+      <div class="brand-box">
+        <img src="/Profile%20pic_part/Arellano_University_New_Logo.png?v=202609280110" alt="Arellano Logo" class="brand-logo">
+        <span class="brand-name">Arellano University</span>
+      </div>
+
+      <div class="profile-box" onclick="navigateToProfile()" title="View Profile">
+        <span class="user-name">KRISHA A. PADRIGON</span>
+        <div class="user-avatar"></div>
+      </div>
+    </header>
+
+    <!-- TIER 2: BLUE HORIZONTAL NAV BAR -->
+    <nav class="top-header-nav">
+      <div class="nav-links">
+        <a href="/Dashboard fol/Dashboard section.html?v=202610102334" class="nav-item">
+          <i class="fa-solid fa-border-all"></i> Dashboard
+        </a>
+        <a href="/View students fol/View students.html?v=202610102332" class="nav-item active">
+          <i class="fa-solid fa-users"></i> View Students
+        </a>
+        <a href="/Add students fol/Add students.html?v=202610102334" class="nav-item">
+          <i class="fa-solid fa-user-plus"></i> Add Student
+        </a>
+        <a href="/schedule fol/schedule.html?v=202610102334" class="nav-item">
+          <i class="fa-solid fa-calendar-plus"></i> Create Schedule
+        </a>
+        <a href="/View schedule/View schedule.html?v=202610102334" class="nav-item">
+          <i class="fa-solid fa-bullhorn"></i> View Schedule
+        </a>
+  
+
+        <a href="/Dashboard fol/create_account.html?v=202610102334" class="nav-item">
+          <i class="fa-solid fa-user-plus"></i> Create Account
+        </a>
+        <a href="/Dashboard fol/manage_users.html?v=202610102334" class="nav-item">
+          <i class="fa-solid fa-user-gear"></i> Manage Users
+        </a>
+        <a href="/Dashboard fol/manage_professors.html?v=202610102334" class="nav-item">
+          <i class="fa-solid fa-user-tie"></i> Manage Professors
+        </a>
+
+        
+        <a href="/About fol/about.html?v=202610102334" class="nav-item">
+          <i class="fa-solid fa-circle-info"></i> About
+        </a>
+      </div>
+    </nav>
+
+    <!-- MAIN BODY CONTENT -->
+    <main class="main-body">
+      <div class="dashboard-content">
+
+        <!-- PAGE TITLE HEADER -->
+        <section class="page-title-section">
+          <div class="title-text">
+            <span class="category-label">STUDENT MANAGEMENT</span>
+            <h1 class="page-heading">View Students</h1>
+            <p class="sub-heading">Select a department and course, then a professor and subject to view its students.</p>
+          </div>
+        </section>
+
+        <!-- TABLE & CONTROLS CONTAINER CARD -->
+        <div class="table-card">
+
+          <div class="class-list-toolbar">
+            <button type="button" id="showUnassignedButton" class="btn-assign-unassigned">Assign Unassigned Students</button>
+            <button type="button" id="exportClassListButton" class="btn-export-class-list" disabled>Export Class List</button>
+            <button type="button" id="showClassListForm" class="btn-add-class-list">Add Class List Schedule</button>
+          </div>
+
+          <!-- Unassigned students appear here, under the button that opens them -->
+          <section id="unassignedPanel" class="unassigned-panel-inline" hidden aria-live="polite">
+            <div class="unassigned-panel-inline-head">
+              <h3>Students without a professor</h3>
+              <button type="button" id="closeUnassignedPanel" class="unassigned-panel-close" aria-label="Close">&times;</button>
+            </div>
+            <div id="unassignedPanelBody" class="unassigned-panel-inline-body">
+              <p class="unassigned-loading">Looking for students without a professor...</p>
+            </div>
+          </section>
+          <form id="addClassListForm" class="class-list-form" hidden>
+            <h2>Add Class List Schedule</h2>
+            <div class="class-list-form-grid">
+              <p class="form-help bsit-scope-note">This system is limited to BSIT students and schedules.</p>
+              <label>Professor<select id="classListProfessor" required disabled><option value="">Loading professors...</option></select></label>
+              <label>Subject<input id="classListSubject" required placeholder="e.g. ITC 111 Programming"></label>
+              <label>Day<select id="classListDay" required><option value="" selected disabled>Select Day</option><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option></select></label>
+              <label>Time<input id="classListTime" required placeholder="e.g. 3:00 PM - 8:00 PM"></label>
+            </div>
+            <div class="class-list-form-actions"><button type="button" id="cancelClassListForm" class="btn-clear">Cancel</button><button type="submit" class="btn-submit">Save Class List</button></div>
+            <p id="classListFormMessage" aria-live="polite"></p>
+          </form>
+
+          <p class="bsit-scope-note">Showing BSIT professors and class lists only.</p>
+          <div id="classListScheduleChoices" class="admin-class-list-choices">Loading class list schedules...</div>
+
+          <!-- STUDENTS DATA TABLE -->
+          <div id="adminStudentsPanel" class="table-responsive" hidden>
+            <table class="students-table">
+              <thead>
+                <tr>
+                  <th>Student ID</th>
+                  <th>Student</th>
+                  <th>Year</th>
+                  <th>Course</th>
+                  <th>Schedule</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="studentTableBody">
+                <!-- JS populates rows dynamically -->
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- MAKEOVER PROFILE CARD MODAL -->
+  <div id="studentPreviewModal" class="modal-overlay" onclick="closeStudentPreview(event)">
+    <div class="modal-card student-card-theme" onclick="event.stopPropagation()">
+      <button type="button" class="modal-close" onclick="closeStudentPreviewDirect()">&times;</button>
+
+      <!-- PROFILE HEADER WITHOUT AVATAR -->
+      <div class="profile-header">
+        <div class="profile-title-details">
+          <h2 id="simName">Student Name</h2>
+          <div class="profile-sub-header">
+            <span id="simCourse">BSIT</span>
+            <span class="divider">|</span>
+            <span id="simYear">1st year</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- KEY-VALUE INFORMATION GRID -->
+      <div class="modal-info">
+        <div class="info-row">
+          <span class="info-label">Status:</span>
+          <div class="info-value">
+            <select id="simStatusSelect" class="modal-status-dropdown">
+              <option value="Active">Active</option>
+              <option value="Dropped">Dropped</option>
+              <option value="Shifted">Shifted</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <span class="info-label">ID NUM:</span>
+          <strong id="simId" class="info-value">00-00000</strong>
+        </div>
+
+        <div class="info-row">
+          <span class="info-label">Gender:</span>
+          <strong id="simGender" class="info-value">-</strong>
+        </div>
+
+        <div class="info-row">
+          <span class="info-label">Birthday:</span>
+          <strong id="simBirthday" class="info-value">-</strong>
+        </div>
+
+        <div class="info-row">
+          <span class="info-label">Schedule Summary:</span>
+          <strong id="simSchedule" class="info-value">-</strong>
+        </div>
+
+        <div class="info-row schedule-assignment-row">
+          <span class="info-label">Assigned Subjects:</span>
+          <div class="info-value schedule-assignment-panel">
+            <div id="simAssignedSchedules" class="assigned-schedule-list">Loading assigned subjects...</div>
+            <button type="button" id="toggleSchedulePicker" class="btn-add-schedule">+ Add subject</button>
+            <div id="schedulePicker" class="schedule-picker" hidden>
+              <input type="search" id="scheduleSearch" class="schedule-search" placeholder="Search subject or professor..." aria-label="Search subjects or professors">
+              <div id="scheduleOptions" class="schedule-options"></div>
+              <div class="schedule-picker-actions">
+                <button type="button" id="selectVisibleSchedules" class="btn-schedule-secondary">Select visible</button>
+                <button type="button" id="clearScheduleSelection" class="btn-schedule-secondary">Clear all</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <span class="info-label">Contact No.:</span>
+          <strong id="simContact" class="info-value">-</strong>
+        </div>
+
+        <div class="info-row">
+          <span class="info-label">Emergency Contact:</span>
+          <strong id="simEmergencyContact" class="info-value">-</strong>
+        </div>
+
+        <div class="info-row">
+          <span class="info-label">Address:</span>
+          <strong id="simAddress" class="info-value">-</strong>
+        </div>
+      </div>
+
+      <!-- DEFAULT ACTIONS -->
+      <div id="defaultActions" class="modal-actions">
+        <button type="button" id="saveStatusBtn" class="btn-save">Save Changes</button>
+        <button type="button" onclick="showDeleteConfirm()" class="btn-delete">Delete</button>
+      </div>
+
+      <!-- CUSTOM INLINE CONFIRMATION BOX -->
+      <div id="deleteConfirmBox" class="delete-confirm-box" style="display: none;">
+        <p class="confirm-text">Are you sure you want to delete this student?</p>
+        <div class="confirm-buttons">
+          <button type="button" id="confirmDeleteBtn" class="btn-confirm-yes">Yes, Delete</button>
+          <button type="button" onclick="hideDeleteConfirm()" class="btn-confirm-no">Cancel</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CLASS LIST EDIT DIALOG -->
+  <div id="classListEditModal" class="modal-overlay" hidden>
+    <div class="modal-card class-list-edit-card" role="dialog" aria-modal="true" aria-labelledby="classListEditTitle">
+      <button type="button" class="modal-close" id="classListEditClose" aria-label="Close">&times;</button>
+
+      <p class="modal-subtitle" id="classListEditSubtitle">CLASS LIST SCHEDULE</p>
+      <h2 class="modal-title" id="classListEditTitle">Edit Schedule</h2>
+
+      <form id="classListEditForm" novalidate>
+        <input type="hidden" id="classListEditId">
+
+        <!-- Shown only when renaming the department/course group -->
+        <div id="classListLabelFields">
+          <label class="class-list-field">
+            <span>Group name</span>
+            <input id="classListLabelInput" type="text" maxlength="255" placeholder="e.g. School of Information Technology / BSIT">
+            <small class="class-list-field-hint">This changes the heading text only. The department and course stay BSIT in the database.</small>
+          </label>
+        </div>
+
+        <!-- Shown only when editing one schedule -->
+        <div id="classListScheduleFields" class="class-list-field-grid">
+          <label class="class-list-field">
+            <span>Subject</span>
+            <input id="classListEditSubject" type="text" maxlength="255" required>
+          </label>
+          <label class="class-list-field">
+            <span>Day</span>
+            <input id="classListEditDay" type="text" maxlength="30" list="classListDayOptions" required>
+            <datalist id="classListDayOptions">
+              <option value="Sunday"></option>
+              <option value="Monday"></option>
+              <option value="Tuesday"></option>
+              <option value="Wednesday"></option>
+              <option value="Thursday"></option>
+              <option value="Friday"></option>
+              <option value="Saturday"></option>
+            </datalist>
+          </label>
+          <label class="class-list-field">
+            <span>Time</span>
+            <input id="classListEditTime" type="text" maxlength="60" placeholder="3:00 PM - 8:00 PM" required>
+            <small class="class-list-field-hint">Use 12-hour format, for example 3:00 PM - 8:00 PM.</small>
+          </label>
+          <label class="class-list-field">
+            <span>Professor</span>
+            <input id="classListEditProfessor" type="text" maxlength="255">
+          </label>
+        </div>
+
+        <p id="classListEditMessage" class="class-list-edit-message" aria-live="polite"></p>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" id="classListEditCancel">Cancel</button>
+          <button type="submit" class="btn-save" id="classListEditSave">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+    <script src="/auth-client.js?v=202610012123"></script>
+  <script src="/socket.io/socket.io.min.js"></script>
+  <script src="/vendor/xlsx.full.min.js"></script>
+  <script src="/View students fol/classListExport.js?v=202609241951"></script>
+  <script src="studentsfunc.js?v=202610012305"></script>
+  <script src="/Profile pic_part/Profile.js?v=202609261659"></script>
+</body>
+</html>

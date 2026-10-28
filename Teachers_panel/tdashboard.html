@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professor Portal - Dashboard</title>
+  <link rel="stylesheet" href="teacher_dashboard.css?v=202609262025">
+</head>
+<body>
+  <header class="navbar">
+    <a class="nav-brand" href="tdashboard.html?v=202610102332" aria-label="Professor portal home">
+      <img src="/Profile%20pic_part/Arellano_University_New_Logo.png?v=202609280110" alt="Arellano University logo">
+      <span>Arellano University | Professor Portal</span>
+    </a>
+    <a class="profile-link" href="/Profile pic_part/Profile section.html?v=202610102334">Profile</a>
+    <button id="logoutBtn" class="logout-button" type="button">Logout</button>
+  </header>
+
+  <main class="dashboard-container">
+    <p class="eyebrow">PROFESSOR PORTAL</p>
+    <h1>Welcome, <span id="teacherIdText">Professor</span>!</h1>
+    <p class="dashboard-subtitle">Manage your classes, student records, and schedules from one place.</p>
+
+    <section class="card-grid" aria-label="Professor portal options">
+      <article class="dashboard-card">
+        <div class="card-icon blue">Students</div>
+        <h2>Student Records</h2>
+        <p>Select a subject to view its students.</p>
+        <a href="teacher_students.html?v=202610102332" class="btn-card blue">View Students</a>
+      </article>
+
+      <article class="dashboard-card">
+        <div class="card-icon green">Schedule</div>
+        <h2>Class Schedule</h2>
+        <p>View schedules posted by the administrator.</p>
+        <a href="teacher_schedules.html?v=202610102332" class="btn-card green">View Schedules</a>
+      </article>
+
+      <article class="dashboard-card">
+        <div class="card-icon dark">Support</div>
+        <h2>About &amp; Support</h2>
+        <p>Find technical support and school contact information when you have concerns.</p>
+        <a href="about_professor.html?v=202610102334" class="btn-card dark">Open About</a>
+      </article>
+    </section>
+  </main>
+
+  <script src="/auth-client.js?v=202610012123"></script>
+  <script src="teacher_dashboard.js?v=202610012107"></script>
+</body>
+</html>

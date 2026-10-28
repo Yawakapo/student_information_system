@@ -1,0 +1,412 @@
+/* ==========================================================================
+   RESET & BASE STYLES
+   ========================================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background:
+        linear-gradient(rgba(1, 20, 47, 0.88), rgba(1, 20, 47, 0.88)),
+        url('/Profile%20pic_part/au-pasig-sm.jpg')
+        no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    /* Follows the real viewport on iPhone, where the toolbar resizes. */
+    min-height: 100dvh;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   ANIMATIONS & KEYFRAMES
+   ========================================================================== */
+
+/* There is no animation on this page. The card appears where it belongs and
+   stays there, and each step is drawn the moment it is reached.
+
+   What was removed, and why it was not needed:
+     - the card and each step fading and sliding upward as they appeared. The
+       finished result was the same a moment later, so it only delayed reading.
+     - the university logo bobbing up and down forever while the pointer rested
+       on it. It never stopped, so it was movement with no meaning attached.
+     - the tick inside the success circle pulsing as it grew. The circle is gone
+       with the tick, so that keyframe went too. */
+
+/* ==========================================================================
+   MAIN LAYOUT
+   ========================================================================== */
+
+.split-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    width: 100%;
+    max-width: 900px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* LEFT BRANDING */
+
+.brand-side {
+    text-align: center;
+    flex: 1;
+}
+
+.sis-logo-img {
+    width: 280px;
+    height: 280px;
+    object-fit: contain;
+    margin: 0 auto 15px;
+    display: block;
+    filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.45));
+}
+
+.sis-title {
+    margin: 0;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.sis-sub {
+    margin: 6px 0 0;
+    font-size: 1.05rem;
+    color: #8fa0ba;
+    letter-spacing: 0.5px;
+}
+
+/* RIGHT SIDE FORM CARD */
+
+.form-side {
+    flex: 1;
+    max-width: 380px;
+    width: 100%;
+}
+
+.sis-box {
+    width: 100%;
+    background: #e2e8f0;
+    color: #1e293b;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    padding: 35px 25px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+   STEP HEADERS
+   ========================================================================== */
+
+.step {
+    display: none;
+}
+
+.step.active {
+    display: block !important;
+}
+
+.step-label {
+    margin-bottom: 6px;
+    color: #64748b;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+.step h2 {
+    margin: 0 0 6px;
+    color: #1e293b;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.description {
+    margin: 0 0 18px;
+    color: #475569;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+.description strong {
+    color: #0f172a;
+}
+
+/* ==========================================================================
+   FORM ELEMENTS & INPUTS
+   ========================================================================== */
+
+.f-group {
+    width: 100%;
+    margin-bottom: 18px;
+    text-align: left;
+}
+
+.f-group label {
+    display: block;
+    margin-bottom: 6px;
+    color: #334155;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.f-in {
+    display: block;
+    width: 100%;
+    padding: 11px 14px;
+    background: #ffffff;
+    border: 1px solid #94a3b8;
+    border-radius: 6px;
+    outline: none;
+    color: #222222;
+    box-sizing: border-box;
+    font-size: 0.95rem;
+}
+
+.f-in::placeholder {
+    color: #858585;
+}
+
+select.f-in {
+    appearance: auto;
+    cursor: pointer;
+    color: #222222;
+    background-color: #ffffff;
+}
+
+/* PASSWORD INPUT */
+
+.password-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.password-wrapper .f-in {
+    padding-right: 60px;
+}
+
+.show-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 4px 8px;
+    background: transparent;
+    border: none;
+    color: #66758a;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.verification-input {
+    text-align: center;
+    letter-spacing: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   BUTTONS & ACTION ROWS
+   ========================================================================== */
+
+.f-btn {
+    display: block;
+    width: 100%;
+    padding: 11px;
+    margin-top: 10px;
+    background: #004085;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.f-btn:active {
+    transform: translateY(1px);
+    box-shadow: none;
+}
+
+.button-row {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.button-row .f-btn {
+    flex: 1;
+    margin-top: 0;
+}
+
+.secondary-btn {
+    width: 85px;
+    padding: 11px;
+    background: transparent;
+    border: 1px solid #94a3b8;
+    border-radius: 6px;
+    color: #334155;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.resend-btn {
+    display: block;
+    width: 100%;
+    margin: 12px auto 0;
+    padding: 4px;
+    background: transparent;
+    border: none;
+    color: #1d4ed8;
+    font-size: 0.82rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.resend-btn:active {
+    transform: scale(0.98);
+}
+
+/* ==========================================================================
+   FEEDBACK & HELPER TEXT
+   ========================================================================== */
+
+.error-message {
+    min-height: 18px;
+    margin: 6px 0;
+    color: #dc2626;
+    font-size: 0.8rem;
+}
+
+.password-hint {
+    margin: -4px 0 10px;
+    color: #64748b;
+    font-size: 0.75rem;
+}
+
+.bottom-links {
+    text-align: left;
+}
+
+.back-login {
+    display: inline-block;
+    margin-top: 12px;
+    color: #1d4ed8;
+    font-size: 0.82rem;
+    text-decoration: none;
+}
+
+/* ==========================================================================
+   SUCCESS SCREEN
+   ========================================================================== */
+
+.success-section {
+    text-align: center;
+}
+
+.success-section h2 {
+    margin-bottom: 8px;
+}
+
+.login-button {
+    display: block;
+    width: 100%;
+    padding: 11px;
+    margin-top: 18px;
+    background: #004085;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (MOBILE)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    body {
+        align-items: flex-start;
+        padding: 20px 12px;
+    }
+
+    .split-container {
+        flex-direction: column;
+        gap: 20px;
+        padding: 10px;
+    }
+
+    .brand-side {
+        width: 100%;
+    }
+
+    .sis-logo-img {
+        width: 180px;
+        height: 180px;
+        margin-bottom: 10px;
+    }
+
+    .sis-title {
+        font-size: 1.8rem;
+    }
+
+    .sis-sub {
+        font-size: 0.9rem;
+    }
+}
+
+/* Shown only when there is no connection to send an email through. It tells the
+   person where to find the code instead of leaving them waiting for an email
+   that cannot arrive. */
+.offline-code-note {
+    margin: 8px 0 0;
+    padding: 9px 11px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    background: #f1f5f9;
+    color: #334155;
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1.45;
+}
+
+.offline-code-note[hidden] {
+    display: none;
+}
+
+/* Pointer over a field
+   The outline darkens a little, which is the only thing that changes. It tells
+   you the box under the pointer is one you can type in. */
+.f-in:hover {
+  border-color: #94a3b8;
+}
+
+/* INPUT_HOVER_SENTINEL */

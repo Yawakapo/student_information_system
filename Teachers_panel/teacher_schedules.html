@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Professor Portal - Schedules</title>
+        <link rel="stylesheet" href="teacher_portal.css?v=202610120217">
+    </head>
+    <body>
+        <header class="navbar">
+            <a class="nav-brand" href="tdashboard.html?v=202610102334">
+                <img src="/Profile%20pic_part/Arellano_University_New_Logo.png?v=202609280110" alt="Arellano University logo">
+                <span>Arellano University | Professor Portal</span>
+            </a>
+            <a class="profile-link" href="/Profile pic_part/Profile section.html?v=202610102334">Profile</a>
+            <button id="logoutBtn" class="logout-button" type="button">Logout</button>
+        </header>
+        <main class="dashboard-container">
+            <div class="page-header">
+                <div>
+                    <p class="eyebrow">PROFESSOR PORTAL</p>
+                    <h1>Class Schedules</h1>
+                    <p class="dashboard-subtitle">View schedules posted by the administrator.</p>
+                </div>
+                <a class="back-link" href="tdashboard.html?v=202610102334">Back to dashboard</a>
+            </div>
+            <section class="content-card">
+                <p class="dashboard-subtitle">Select a Department / Course, then a professor, to view that professor's scheduled days.</p>
+                <div id="scheduleChoices" class="subject-list"><p class="notice">Loading departments and courses...</p></div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Subject</th>
+                                <th>Section</th>
+                                <th>Room</th>
+                                <th>Day</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody id="schedulesBody">
+                            <tr>
+                                <td class="notice" colspan="5">Loading schedules...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    <script src="/auth-client.js?v=202610012123"></script>
+        <script src="/socket.io/socket.io.min.js"></script>
+        <script src="teacher_shared.js?v=202609280105"></script>
+        <script src="teacher_schedules.js?v=202609280049"></script>
+    </body>
+</html>

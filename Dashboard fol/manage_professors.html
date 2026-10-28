@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Professors - Admin</title>
+  <link rel="stylesheet" href="dashboard design.css?v=202610120227">
+  <link rel="stylesheet" href="manage_users.css?v=202609251543">
+  <link rel="stylesheet" href="manage_professors.css?v=202610120217">
+</head>
+<body>
+  <header class="top-header-brand">
+    <div class="brand-box">
+      <img src="/Profile%20pic_part/Arellano_University_New_Logo.png?v=202609280110" alt="Arellano logo" class="brand-logo">
+      <span class="brand-name">Arellano University</span>
+    </div>
+    <div class="profile-box" onclick="navigateToProfile()" title="View Profile">
+      <span class="user-name">Administrator</span>
+      <div class="user-avatar"></div>
+    </div>
+  </header>
+
+  <nav class="top-header-nav">
+    <div class="nav-links">
+      <a href="/Dashboard fol/Dashboard section.html?v=202610102334" class="nav-item">Dashboard</a>
+      <a href="/View students fol/View students.html?v=202610102332" class="nav-item">View Students</a>
+      <a href="/Add students fol/Add students.html?v=202610102334" class="nav-item">Add Student</a>
+      <a href="/schedule fol/schedule.html?v=202610102332" class="nav-item">Create Schedule</a>
+      <a href="/View schedule/View schedule.html?v=202610102332" class="nav-item">View Schedule</a>
+      <a href="create_account.html?v=202610102334" class="nav-item">Create Account</a>
+      <a href="manage_users.html?v=202610102332" class="nav-item">Manage Users</a>
+      <a href="manage_professors.html?v=202610102332" class="nav-item active">Manage Professors</a>
+      <a href="/About fol/about.html?v=202610102334" class="nav-item">About</a>
+    </div>
+  </nav>
+
+  <main class="main-body">
+    <div class="manage-users-page">
+      <section class="manage-title">
+        <div>
+          <p class="category-label">ADMIN PANEL</p>
+          <h1>Manage Professors</h1>
+          <p>Add BSIT professors and remove duplicate or inactive faculty records.</p>
+          <p class="manage-helper">Deleting a professor also removes the linked account, schedules, and class-list assignments. Student records are kept and marked unassigned.</p>
+          <p class="manage-helper">A new professor appears in Create Schedule and Add Student options immediately. They appear in View Students, View Schedules, and portals after a schedule is assigned.</p>
+        </div>
+        <button type="button" id="addProfessorButton" class="btn-primary">+ Add Professor</button>
+      </section>
+
+      <section id="professorFormPanel" class="manage-card professor-form-card" hidden>
+        <div class="professor-form-heading">
+          <div>
+            <h2>Add Professor</h2>
+            <p>Department is fixed to BSIT. Account fields are optional; leave them blank to add only the faculty record.</p>
+          </div>
+          <button type="button" id="closeProfessorForm" class="btn-secondary">Close</button>
+        </div>
+        <form id="professorForm">
+          <div class="professor-form-grid">
+            <label>Professor ID<input id="professorTeacherId" required maxlength="30" placeholder="e.g. T-005"></label>
+            <label>First Name<input id="professorFirstName" required maxlength="50" placeholder="First name"></label>
+            <label>Middle Name<input id="professorMiddleName" maxlength="50" placeholder="Optional"></label>
+            <label>Last Name<input id="professorLastName" required maxlength="50" placeholder="Last name"></label>
+            <label>Email Address<input id="professorEmail" type="email" required maxlength="100" placeholder="name@example.com"></label>
+          </div>
+          <div class="professor-account-heading">
+            <h3>Optional Login Account</h3>
+            <p>Create a professor login now, or use Create Account later.</p>
+          </div>
+          <div class="professor-form-grid">
+            <label>Username<input id="professorUsername" maxlength="30" placeholder="Optional username"></label>
+            <label>Password<input id="professorPassword" type="password" minlength="8" placeholder="At least 8 characters"></label>
+          </div>
+          <p id="professorFormMessage" class="users-message" aria-live="polite"></p>
+          <div class="professor-form-actions">
+            <button type="button" id="cancelProfessorForm" class="btn-secondary">Cancel</button>
+            <button type="submit" id="saveProfessorButton" class="btn-primary">Save Professor</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="manage-card">
+        <div class="manage-toolbar professor-toolbar">
+          <label class="manage-search">
+            <span>Search professors</span>
+            <input id="professorSearch" type="search" placeholder="Professor ID, name, or email">
+          </label>
+          <label>
+            <span>Account</span>
+            <select id="professorAccountFilter">
+              <option value="">All accounts</option>
+              <option value="linked">With login</option>
+              <option value="unlinked">Without login</option>
+            </select>
+          </label>
+          <button id="refreshProfessors" class="btn-secondary" type="button">Refresh</button>
+        </div>
+        <p id="professorsMessage" class="users-message" aria-live="polite"></p>
+        <div class="users-table-wrap">
+          <table class="users-table professor-table">
+            <thead>
+              <tr>
+                <th>Professor ID</th>
+                <th>Professor</th>
+                <th>Account</th>
+                <th>Schedules</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="professorsTableBody">
+              <tr><td colspan="6" class="table-message">Loading professors...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- REPLACE PROFESSOR DIALOG: hands the classes over instead of deleting them -->
+    <div id="replaceProfessorModal" class="replace-modal" hidden>
+      <div class="replace-modal-card" role="dialog" aria-modal="true" aria-labelledby="replaceProfessorTitle">
+        <button type="button" class="replace-modal-close" id="replaceProfessorClose" aria-label="Close">&times;</button>
+
+        <p class="replace-modal-eyebrow">REMOVE PROFESSOR</p>
+        <h2 class="replace-modal-title" id="replaceProfessorTitle">Who takes over?</h2>
+        <p class="replace-modal-text" id="replaceProfessorSummary"></p>
+
+        <div class="replace-modal-field">
+          <label for="replaceProfessorSelect">Hand the classes to</label>
+          <select id="replaceProfessorSelect"></select>
+          <small class="replace-modal-hint" id="replaceProfessorHint"></small>
+        </div>
+
+        <label class="replace-modal-check">
+          <input type="checkbox" id="replaceProfessorDeleteAll">
+          <span>Delete the classes instead, removing them from every student</span>
+        </label>
+
+        <p class="replace-modal-warning" id="replaceProfessorWarning" hidden></p>
+
+        <div class="replace-modal-actions">
+          <button type="button" class="replace-btn-cancel" id="replaceProfessorCancel">Cancel</button>
+          <button type="button" class="replace-btn-confirm" id="replaceProfessorConfirm">Remove Professor</button>
+        </div>
+      </div>
+    </div>
+    <script src="/auth-client.js?v=202610012123"></script>
+  <script src="/socket.io/socket.io.min.js"></script>
+  <script src="manage_professors.js?v=202610012025"></script>
+  <script src="/Profile pic_part/Profile.js?v=202609261659"></script>
+</body>
+</html>

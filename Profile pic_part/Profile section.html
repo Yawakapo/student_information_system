@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - Student Information System</title>
+ 
+  <link rel="stylesheet" href="/Dashboard fol/dashboard design.css?v=202610120227">
+  <link rel="stylesheet" href="/Profile pic_part/profile_design.css?v=202610120227">
+</head>
+<body>
+
+  <div class="app-container">
+
+    <!-- Top Header Navigation -->
+    <header class="top-header-brand" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 24px;">
+      <div class="brand-box">
+        <img src="/Profile%20pic_part/Arellano_University_New_Logo.png?v=202609280110" alt="Arellano Logo" class="brand-logo">
+        <span class="brand-name">Arellano University</span>
+      </div>
+
+      <div class="header-right-actions" style="display: flex; align-items: center; gap: 16px;">
+        <!-- Logout Button Trigger -->
+        <button id="btnLogout" onclick="handleLogout()" style="background: #ef4444; color: white; border: none; padding: 8px 14px; border-radius: 6px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 6px;">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+      </div>
+    </header>
+
+    <main class="main-body">
+      <div class="dashboard-content">
+
+        <!-- Page Heading Section -->
+        <section class="page-title-section" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <div class="title-text">
+            <span class="category-label" style="font-size: 12px; font-weight: 700; color: #1e50e2;">ACCOUNT SETTINGS</span>
+            <h1 class="page-heading" style="margin: 4px 0 0 0;"><span id="profilePageTitle">Profile</span></h1>
+          </div>
+          <a href="/Dashboard fol/Dashboard section.html?v=202610102334" id="backToDashboard" class="btn-back-dashboard" style="text-decoration: none; color: #475569; font-weight: 600;">
+            <i class="fa-solid fa-arrow-left"></i> Back to Dashboard
+          </a>
+        </section>
+
+        <div class="profile-container" style="display: flex; gap: 24px;">
+          
+          <!-- Left Column / Profile Card -->
+          <div class="profile-card" style="flex: 0 0 280px; text-align: center;">
+            <div class="avatar-upload-box" style="position: relative; display: inline-block;">
+              <div class="big-avatar" id="profileAvatarDisplay">
+                <span>J</span>
+              </div>
+              <label for="avatarInput" class="btn-change-photo" style="cursor: pointer; font-size: 13px;">Change Photo</label>
+              <input type="file" id="avatarInput" accept="image/*" style="display: none;" onchange="previewProfilePhoto(event)">
+            </div>
+
+            <h2 id="profCardName" style="margin-top: 12px; font-size: 20px;">KRISHA A. PADRIGON</h2>
+            <p class="prof-role" id="profCardRole" style="color: #475569; font-size: 16px; margin-bottom: 8px; font-weight: 700;">Administrator</p>
+
+            <!-- User ID Display Box -->
+            <div style="margin-top: 16px; padding: 10px; background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 8px;">
+              <span id="profCardIdLabel" style="font-size: 11px; font-weight: 700; color: #64748b; display: block;">ACCOUNT ID</span>
+              <strong id="profCardUserId" style="font-size: 15px; color: #1e50e2;">2026-0123</strong>
+            </div>
+          </div>
+
+          <!-- Right Column / Forms Wrapper -->
+          <div style="display: flex; flex-direction: column; gap: 20px; flex: 1;">
+            
+            <!-- Personal Details Card -->
+            <div class="profile-form-card">
+              <h3 style="margin-bottom: 16px;"><i class="fa-solid fa-id-card"></i> Personal Details</h3>
+              
+              <form id="profileSettingsForm">
+                <div class="form-group" style="margin-bottom: 12px;">
+                  <label for="profUsername">Username</label>
+                  <input type="text" id="profUsername" autocomplete="username" required>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 12px;">
+                  <label for="profImmutableId" id="profImmutableLabel">Student ID / Professor ID</label>
+                  <input type="text" id="profImmutableId" readonly aria-readonly="true">
+                </div>
+
+                <div class="form-group" style="margin-bottom: 12px;">
+                  <label for="profFullName">Full Name</label>
+                  <input type="text" id="profFullName" value="KRISHA A. PADRIGON" required>
+                </div>
+
+                <div class="form-row" style="display: flex; gap: 16px; margin-bottom: 16px;">
+                  <div class="form-group" style="flex: 1;">
+                    <label for="profEmail">Email Address</label>
+                    <input type="email" id="profEmail" value="email@gmail.com" required>
+                  </div>
+                </div>
+
+                <div class="profile-actions">
+                  <button type="submit" class="btn-save-profile" style="background: #1e50e2; color: white; border: none; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: 600;">
+                    <i class="fa-solid fa-floppy-disk"></i> Save Changes
+                  </button>
+                </div>
+
+              </form>
+            </div>
+
+            <!-- Email Change Confirmation Card -->
+            <div class="profile-form-card">
+              <h3 style="margin-bottom: 12px;"><i class="fa-solid fa-envelope"></i> Change Email Address</h3>
+              <p style="color: #64748b; font-size: 14px; margin-bottom: 14px;">Enter the new email in Personal Details, then send a verification code before it can be saved.</p>
+              <button type="button" id="requestEmailChangeBtn" style="background: #1e50e2; color: white; border: none; padding: 10px 16px; border-radius: 6px; cursor: pointer; font-weight: 600;">Send Email Verification Code</button>
+              <form id="emailChangeOtpForm" style="display: none; margin-top: 14px;">
+                <div class="form-group" style="margin-bottom: 12px;">
+                  <label for="emailChangeOtp">Email Verification Code</label>
+                  <input type="text" id="emailChangeOtp" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" placeholder="Enter 6-digit code" required>
+                </div>
+                <button type="submit" style="background: #10b981; color: white; border: none; padding: 10px 16px; border-radius: 6px; cursor: pointer; font-weight: 600;">Confirm New Email</button>
+              </form>
+            </div>
+
+            <!-- Security Settings & Password Reset Card -->
+            <div class="profile-form-card">
+              <h3 style="margin-bottom: 12px;"><i class="fa-solid fa-shield-halved"></i> Security Settings</h3>
+              
+              <!-- Step 1: Request OTP -->
+              <div id="step-1">
+                <p style="color: #64748b; font-size: 14px; margin-bottom: 16px;">
+                  Request a verification code sent to your registered email address to change your password.
+                </p>
+                <button type="button" id="sendOtpBtn" onclick="sendOTP()" style="background: #1e50e2; color: white; border: none; padding: 10px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+                  <i class="fa-solid fa-paper-plane"></i> Send Verification Code to Email
+                </button>
+              </div>
+
+              <!-- Step 2: Enter OTP & New Password -->
+              <form id="step-2" style="display: none; margin-top: 12px;">
+                <div class="form-group" style="margin-bottom: 12px;">
+                  <label for="otpCode">Verification Code (OTP)</label>
+                  <input type="text" id="otpCode" placeholder="Enter 6-digit code" required>
+                  <small style="color: #64748b; font-size: 12px; display: block; margin-top: 4px;">Code expires in 10 minutes.</small>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 16px;">
+                  <label for="newPassword">New Password</label>
+                  <div class="password-field">
+                    <input type="password" id="newPassword" placeholder="Enter new password" autocomplete="new-password" required>
+                    <button type="button" class="password-toggle" onclick="toggleProfilePassword('newPassword', this)" aria-label="Show new password">Show</button>
+                  </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 16px;">
+                  <label for="confirmPassword">Confirm New Password</label>
+                  <div class="password-field">
+                    <input type="password" id="confirmPassword" placeholder="Confirm new password" autocomplete="new-password" required>
+                    <button type="button" class="password-toggle" onclick="toggleProfilePassword('confirmPassword', this)" aria-label="Show confirmed password">Show</button>
+                  </div>
+                </div>
+
+                <p class="text-muted small">
+           Code expires in 10 minutes. 
+          <a href="javascript:void(0)" id="resendOtpBtn" onclick="resendOTP()" style="margin-left: 8px; color: #1e50e2; text-decoration: none; font-weight: 600;">Resend Code</a>
+                  </p>
+
+                <button type="submit" style="background: #10b981; color: white; border: none; padding: 10px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+                  <i class="fa-solid fa-key"></i> Update Password
+                </button>
+              </form>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Custom Logout Confirmation Modal -->
+  <div id="logoutModal" class="custom-modal-overlay">
+    <div class="custom-modal-card">
+      <div class="modal-icon">
+        <i class="fa-solid fa-right-from-bracket"></i>
+      </div>
+      <h3>Confirm Logout</h3>
+      <p>Are you sure you want to log out of your account?</p>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeLogoutModal()">Cancel</button>
+        <button class="btn-confirm" onclick="confirmLogout()">Log Out</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/auth-client.js?v=202610012123"></script>
+  <script src="/Profile pic_part/Profile.js?v=202609261659"></script>
+
+  <!-- Logout Script -->
+  <script>
+    function handleLogout() {
+      const modal = document.getElementById('logoutModal');
+      if (modal) modal.classList.add('show');
+    }
+
+    function closeLogoutModal() {
+      const modal = document.getElementById('logoutModal');
+      if (modal) modal.classList.remove('show');
+    }
+
+    function confirmLogout() {
+      window.sisLogout?.('/Login%20part/login.html');
+    }
+  </script>
+
+</body>
+</html>

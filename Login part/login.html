@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information System Portal</title>
+    
+    <link rel="stylesheet" href="login_design.css?v=202610120230">
+</head>
+<body>
+
+    <div class="split-container">
+
+        <!-- LEFT SIDE: UNIVERSITY BRANDING -->
+        <div class="brand-side">
+            <img src="/Profile%20pic_part/Arellano_University_New_Logo.png?v=202609280110"
+                 alt="Arellano University Logo"
+                 class="sis-logo-img">
+
+            <h1 class="sis-title">ARELLANO'S</h1>
+            <p class="sis-sub">Student Information System</p>
+        </div>
+
+
+    
+
+        <!-- RIGHT SIDE: FORM CONSOLE PANEL -->
+        <div class="form-side">
+            <div class="sis-box">
+                
+                <!-- 1. LOGIN INTERFACE PANEL -->
+                <form id="view-login">
+                    <!-- Role Dropdown -->
+                    <div class="f-group">
+                        <label>Account Type</label>
+                        <select class="f-in" id="loginRole" required style="background-color: #ffffff; color: #333;">
+                            <option value="student">Student</option>
+                            <option value="teacher">Professor</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+
+                    <!-- Username or student number -->
+                    <div class="f-group">
+                        <label id="loginIdLabel">Username or Student Number</label>
+                        <input class="f-in" type="text" id="loginUserId" placeholder="Enter your username or student number" required autocomplete="username">
+                    </div>
+
+                    <div class="f-group">
+                        <label>Password</label>
+                        <div class="password-wrapper">
+                            <input class="f-in" type="password" id="loginPassword" placeholder="Enter password" required>
+                            <button type="button" class="show-password-btn" onclick="togglePasswordVisibility('loginPassword', this)">Show</button>
+                        </div>
+                    </div>
+
+                    <p id="loginMessage" class="login-message" role="status" aria-live="polite" hidden></p>
+
+                    <button type="submit" class="f-btn">Log-in</button>
+
+                    <div style="display: flex; justify-content: flex-start;">
+                        <a href="../Forgot password fol/forgot.html?v=202610102334" class="f-lnk">
+                            Forgot password?
+                        </a>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Links to your connected JavaScript interaction layer -->
+    <script src="/auth-client.js?v=202610012123"></script>
+    <script src="login_interaction.js?v=202610061823"></script>
+
+    
+</body>
+</html>
